@@ -17,6 +17,10 @@
   max-width: 200px;
 }
 
+.collection-card-wrapper {
+  max-width: 200px;
+}
+
 .card__heading {
   font-size: 3rem;
 }
