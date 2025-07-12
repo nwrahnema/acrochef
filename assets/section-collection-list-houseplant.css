@@ -16,6 +16,10 @@
   min-width: 170px;
 }
 
+.card__heading {
+  font-size: 4rem;
+}
+
 @media screen and (max-width: 749px) {
   .collection-list {
     grid-template-columns: 1fr 1fr;
