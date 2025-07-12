@@ -24,33 +24,3 @@
 .card__heading {
   font-size: 2.5rem;
 }
-
-@media screen and (max-width: 749px) {
-  .collection-list {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-columns: unset;
-    grid-auto-flow: unset;
-  }
-  
-  .collection-list:not(.slider) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .section-collection-list .page-width {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .card__heading {
-    font-size: 2rem;
-  }
-}
-
-.collection-list__item:only-child {
-  max-width: 100%;
-  width: 100%;
-}
-
