@@ -13,18 +13,6 @@
       id="Slider-{{ section.id }}"
       role="list"
     >
-      <li class="collection-list-title-card collection-list__item grid__item title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
-        <h2
-          id="SectionHeading-{{ section.id }}"
-          class="collection-list-title inline-richtext {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: 0;"
-          {% endif %}
-        >
-          {{ section.settings.title }}
-        </h2>
-      </li>
       {%- liquid
         assign columns = num_items
         if columns > 3
