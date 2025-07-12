@@ -10,54 +10,10 @@
   grid-auto-flow: column;
 }
 
-.collection-list-title {
-  margin: 0;
-  word-break: normal;
-  font-size: 4rem;
-}
-
-.collection-list-title-card {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
 .collection-list__item {
   padding: 2rem;  
   flex: 1;
   min-width: 170px;
-}
-
-.collection-list-view-all {
-  margin-top: 2rem;
-  margin-left: auto;
-}
-
-.collection-list-view-all-icon {
-  display: flex;
-}
-
-.collection-list-view-all-button {
-  min-width: 0;
-  min-height: 0;
-  padding: 0.75rem;
-  border: 0.1rem solid;
-  display: flex;
-  gap: 0.5rem;
-  font-size: 1rem;
-  text-transform: lowercase;
-}
-
-@media screen and (max-width: 1250px) {
-  .collection-list-title {
-    font-size: 4rem;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .collection-list-title {
-    font-size: 4rem;
-  }
 }
 
 @media screen and (max-width: 749px) {
