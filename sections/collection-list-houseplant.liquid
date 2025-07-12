@@ -26,7 +26,7 @@
           {{ block.shopify_attributes }}
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index | plus: 1 }};"
+            style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
           {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
