@@ -71,6 +71,29 @@
         "padding_left": 0
       }
     },
+    "1754619754012c3614": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_880df55_AQRaAU": {
+          "type": "ai_gen_block_880df55",
+          "settings": {
+            "announcement_text": "FREE SHIPPING ON ORDERS OVER $50! NEW CUSTOMERS ENJOY 10% OFF WHEN YOU SIGN UP FOR OUR NEWSLETTER",
+            "scroll_speed": 15,
+            "pause_on_hover": true,
+            "background_color": "#171171",
+            "text_color": "#ffffff",
+            "font_size": 16,
+            "font_weight": "400",
+            "padding": 12
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_880df55_AQRaAU"
+      ],
+      "settings": {}
+    },
     "image_banner_fPNqX4": {
       "type": "image-banner",
       "name": "t:sections.image-banner.presets.name",
@@ -168,6 +191,7 @@
   "order": [
     "video_banner_cRhGBL",
     "collection_list_houseplant_afK3w6",
+    "1754619754012c3614",
     "image_banner_fPNqX4",
     "product_list_houseplant_jgWwzH",
     "image_banner_ADEAVD",
