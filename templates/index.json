@@ -74,8 +74,8 @@
     "1754619754012c3614": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_880df55_AQRaAU": {
-          "type": "ai_gen_block_880df55",
+        "scrolling_announcement_880df55_AQRaAU": {
+          "type": "scrolling_announcement_880df55",
           "settings": {
             "announcement_text": "FREE SHIPPING ON ORDERS OVER $50! NEW CUSTOMERS ENJOY 10% OFF WHEN YOU SIGN UP FOR OUR NEWSLETTER",
             "scroll_speed": 15,
@@ -90,7 +90,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_880df55_AQRaAU"
+        "scrolling_announcement_880df55_AQRaAU"
       ],
       "settings": {}
     },

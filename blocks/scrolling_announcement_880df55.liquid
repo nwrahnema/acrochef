@@ -3,10 +3,10 @@
     An announcement bar with text that scrolls left to right
 
 {% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign scroll_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .ai-scroll-bar-{{ ai_gen_id }} {
+  .scroll-bar-{{ scroll_id }} {
     background-color: {{ block.settings.background_color }};
     color: {{ block.settings.text_color }};
     padding: {{ block.settings.padding }}px 0;
@@ -15,13 +15,13 @@
     position: relative;
     width: 100%;}
 
-  .ai-scroll-content-{{ ai_gen_id }} {
+  .scroll-content-{{ scroll_id }} {
     display: inline-block;
-    animation: ai-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;font-size: {{ block.settings.font_size }}px;
+    animation: scroll-{{ scroll_id }} {{ block.settings.scroll_speed }}s linear infinite;font-size: {{ block.settings.font_size }}px;
     font-weight: {{ block.settings.font_weight }};
   }
 
-  @keyframes ai-scroll-{{ ai_gen_id }} {
+  @keyframes scroll-{{ scroll_id }} {
     0% {
       transform: translateX(-100%);
     }
@@ -30,19 +30,19 @@
     }
   }
 
-  .ai-scroll-bar-{{ ai_gen_id }}:hover .ai-scroll-content-{{ ai_gen_id }} {
+  .scroll-bar-{{ scroll_id }}:hover .scroll-content-{{ scroll_id }} {
     animation-play-state: {{ block.settings.pause_on_hover | default: true |ternary: 'paused', 'running' }};
   }
 
   @media screen and (max-width: 749px) {
-    .ai-scroll-content-{{ ai_gen_id }} {
+    .scroll-content-{{ scroll_id }} {
       font-size: {{ block.settings.font_size | times: 0.9 }}px;
     }
   }
 {% endstyle %}
 
-<div class="ai-scroll-bar-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <div class="ai-scroll-content-{{ ai_gen_id }}">
+<div class="scroll-bar-{{ scroll_id }}" {{ block.shopify_attributes }}>
+  <div class="scroll-content-{{ scroll_id }}">
     {{ block.settings.announcement_text }}
   </div>
 </div>
