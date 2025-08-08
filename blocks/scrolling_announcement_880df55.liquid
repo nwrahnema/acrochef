@@ -3,46 +3,50 @@
     An announcement bar with text that scrolls left to right
 
 {% enddoc %}
-{% assign scroll_id = block.id | replace: '_', '' | downcase %}
+
+{% unless block.settings.pause_on_hover %}
+  {% assign block.settings.pause_on_hover = true %}
+{% endunless %}
 
 {% style %}
-  .scroll-bar-{{ scroll_id }} {
-    background-color: {{ block.settings.background_color }};
-    color: {{ block.settings.text_color }};
-    padding: {{ block.settings.padding }}px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    width: 100%;}
-
-  .scroll-content-{{ scroll_id }} {
-    display: inline-block;
-    animation: scroll-{{ scroll_id }} {{ block.settings.scroll_speed }}s linear infinite;font-size: {{ block.settings.font_size }}px;
-    font-weight: {{ block.settings.font_weight }};
+  .marquee {
+      width: 100%;
+      display: inline-block;
+      box-sizing: content-box;
+      padding-left: 100%;
+      padding-top: {{ block.settings.padding }}px;
+      padding-bottom: {{ block.settings.padding }}px;
+      background-color: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
   }
 
-  @keyframes scroll-{{ scroll_id }} {
-    0% {
+  .marquee__inner {
+      text-wrap: nowrap;
+      display: inline-block;
+      padding-right: 100%;
+      animation: marquee {{ block.settings.scroll_speed }}s linear infinite;
+      animation-play-state: running;
+      font-size: {{ block.settings.font_size }}px;
+  }
+
+  .marquee:hover .marquee__inner {
+    {%- if block.settings.pause_on_hover -%}
+      animation-play-state: paused;
+    {%- endif -%}
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
       transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
-  .scroll-bar-{{ scroll_id }}:hover .scroll-content-{{ scroll_id }} {
-    animation-play-state: {{ block.settings.pause_on_hover | default: true |ternary: 'paused', 'running' }};
-  }
-
-  @media screen and (max-width: 749px) {
-    .scroll-content-{{ scroll_id }} {
-      font-size: {{ block.settings.font_size | times: 0.9 }}px;
     }
   }
 {% endstyle %}
 
-<div class="scroll-bar-{{ scroll_id }}" {{ block.shopify_attributes }}>
-  <div class="scroll-content-{{ scroll_id }}">
+<div class="marquee" {{ block.shopify_attributes }}>
+  <div class="marquee__inner">
     {{ block.settings.announcement_text }}
   </div>
 </div>
