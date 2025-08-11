@@ -71,7 +71,7 @@
           "settings": {
             "announcement_text": "FREE SHIPPING ON ORDERS OVER $50! NEW CUSTOMERS ENJOY 10% OFF WHEN YOU SIGN UP FOR OUR NEWSLETTER",
             "scroll_speed": 15,
-            "pause_on_hover": true,
+            "pause_on_hover": false,
             "background_color": "#171171",
             "text_color": "#ffffff",
             "font_size": 16,
