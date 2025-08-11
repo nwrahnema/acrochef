@@ -16,60 +16,52 @@
         "video": "shopify://files/videos/crep acrochef.mp4"
       }
     },
-    "collection_list_houseplant_afK3w6": {
-      "type": "collection-list-houseplant",
+    "1754881105207597a6": {
+      "type": "_blocks",
       "blocks": {
-        "featured_collection_YBUBHw": {
-          "type": "featured_collection",
+        "ai_gen_block_da04ece_KLE8PG": {
+          "type": "ai_gen_block_da04ece",
           "settings": {
-            "collection": "pots-new"
-          }
-        },
-        "featured_collection_4GCP3V": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "cookware-sets-new"
-          }
-        },
-        "featured_collection_dKbckt": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "casserole-pans-new"
-          }
-        },
-        "featured_collection_rFrVWK": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "fry-pans-new"
-          }
-        },
-        "featured_collection_EUUV9p": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "cookware"
-          }
+            "heading": "Shop by category",
+            "description": "",
+            "selected_collections": [
+              "casserole-pans-new",
+              "cookware-sets-new",
+              "fry-pans-new",
+              "pots-new"
+            ],
+            "show_product_count": true,
+            "text_alignment": "center",
+            "collection_width": 280,
+            "collection_spacing": 20,
+            "image_height": 200,
+            "show_navigation": true,
+            "background_color": "#ffffff",
+            "text_color": "#171171",
+            "card_background_color": "#ffffff",
+            "card_text_color": "#171171",
+            "card_border_color": "#e5e5e5",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000",
+            "button_border_color": "#e5e5e5",
+            "button_hover_color": "#f5f5f5",
+            "heading_size": 38,
+            "description_size": 16,
+            "collection_title_size": 18,
+            "collection_count_size": 14,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "card_padding": 20,
+            "card_border_radius": 8,
+            "card_border_width": 1
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "featured_collection_YBUBHw",
-        "featured_collection_4GCP3V",
-        "featured_collection_dKbckt",
-        "featured_collection_rFrVWK",
-        "featured_collection_EUUV9p"
+        "ai_gen_block_da04ece_KLE8PG"
       ],
-      "name": "t:sections.collection-list-houseplant.presets.name",
-      "settings": {
-        "title": "Featured Collections",
-        "image_ratio": "square",
-        "columns_desktop": 4,
-        "color_scheme": "",
-        "show_view_all": true,
-        "columns_mobile": "2",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_right": 0,
-        "padding_left": 0
-      }
+      "settings": {}
     },
     "1754619754012c3614": {
       "type": "_blocks",
@@ -94,64 +86,55 @@
       ],
       "settings": {}
     },
-    "image_banner_fPNqX4": {
-      "type": "image-banner",
-      "name": "t:sections.image-banner.presets.name",
-      "settings": {
-        "image": "shopify://shop_images/OurStory.png",
-        "image_overlay_opacity": 0,
-        "image_height": "adapt",
-        "image_behavior": "none",
-        "desktop_content_position": "middle-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": true,
-        "color_scheme": "",
-        "stack_images_on_mobile": true,
-        "mobile_content_alignment": "center",
-        "show_text_below": true
-      }
-    },
-    "product_list_houseplant_jgWwzH": {
-      "type": "product-list-houseplant",
+    "17548804239d0657b2": {
+      "type": "_blocks",
       "blocks": {
-        "featured_product_KJdd3L": {
-          "type": "featured_product",
+        "ai_gen_block_6c42dbe_RinR6F": {
+          "type": "ai_gen_block_6c42dbe",
           "settings": {
-            "product": "10-aluminum-non-stick-pot-with-stainless-steel-trim-glass-lid-vl426"
-          }
-        },
-        "featured_product_dG3tHD": {
-          "type": "featured_product",
-          "settings": {
-            "product": "catering-series-15-75-non-stick-2-handle-stock-pot-with-solid-lid-gt440"
-          }
-        },
-        "featured_product_KLr8Dw": {
-          "type": "featured_product",
-          "settings": {
-            "product": "9-4-non-stick-die-cast-2-handle-casserole-pot-with-glass-lid-and-silicone-rim-mb424"
-          }
+            "title": "Featured products",
+            "description": "<p>Shop our best-sellers</p>",
+            "collection": "casserole-pans-new",
+            "products_limit": 12,
+            "show_vendor": true,
+            "show_add_to_cart": true,
+            "button_text": "View product",
+            "text_alignment": "center",
+            "card_width": 280,
+            "product_spacing": 20,
+            "image_aspect_ratio": "1/1",
+            "show_scroll_controls": true,
+            "section_padding": 60,
+            "header_spacing": 32,
+            "card_padding": 16,
+            "title_size": 38,
+            "description_size": 16,
+            "product_title_size": 15,
+            "price_size": 16,
+            "background_color": "#ffffff",
+            "text_color": "#171171",
+            "price_color": "#171171",
+            "card_background": "#ffffff",
+            "card_border_color": "#e5e5e5",
+            "card_border_width": 1,
+            "card_border_radius": 8,
+            "badge_color": "#ff4444",
+            "badge_text_color": "#ffffff",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#333333",
+            "button_border_radius": 4,
+            "control_button_color": "#f4f4f4",
+            "control_button_text_color": "#171171",
+            "control_button_hover_color": "#e5e5e5"
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "featured_product_KJdd3L",
-        "featured_product_dG3tHD",
-        "featured_product_KLr8Dw"
+        "ai_gen_block_6c42dbe_RinR6F"
       ],
-      "name": "t:sections.product-list-houseplant.presets.name",
-      "settings": {
-        "title": "Our Favorites",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "color_scheme": "",
-        "show_view_all": true,
-        "columns_mobile": "1",
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "padding_right": 36,
-        "padding_left": 36,
-        "border_thickness": 0.1
-      }
+      "settings": {}
     },
     "image_banner_ADEAVD": {
       "type": "image-banner",
@@ -190,10 +173,9 @@
   },
   "order": [
     "video_banner_cRhGBL",
-    "collection_list_houseplant_afK3w6",
+    "1754881105207597a6",
     "1754619754012c3614",
-    "image_banner_fPNqX4",
-    "product_list_houseplant_jgWwzH",
+    "17548804239d0657b2",
     "image_banner_ADEAVD",
     "image_banner_cFUkm8"
   ]
