@@ -224,8 +224,20 @@
       </div>
     {% endif %}
 
-    <div class="product-list-scroll-wrapper-{{ product_list_id }}">
-      <div class="product-list-scroll-track-{{ product_list_id }}" data-scroll-track>
+    <div class="product-list-scroll-wrapper-{{ product_list_id }}" style="display: flex; align-items: center; gap: 0;">
+      {% if block.settings.show_scroll_controls %}
+        <button
+          class="product-list-scroll-button-{{ product_list_id }}"
+          data-scroll-prev
+          aria-label="Previous products"
+          style="margin-right: 12px;"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+      {% endif %}
+      <div class="product-list-scroll-track-{{ product_list_id }}" data-scroll-track style="flex:1; min-width:0;">
         {% if block.settings.collection != blank %}
           {% for product in block.settings.collection.products limit: block.settings.products_limit %}
             <div class="product-list-card-{{ product_list_id }}">
@@ -303,26 +315,19 @@
           {% endfor %}
         {% endif %}
       </div>
-    </div>
-
-    {% if block.settings.show_scroll_controls %}
-      <div class="product-list-scroll-controls-{{ product_list_id }}">
+      {% if block.settings.show_scroll_controls %}
         <button
           class="product-list-scroll-button-{{ product_list_id }}"
-          data-scroll-prev
-          aria-label="Previous products"
+          data-scroll-next
+          aria-label="Next products"
+          style="margin-left: 12px;"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15,18 9,12 15,6"></polyline>
-          </svg>
-        </button>
-        <button class="product-list-scroll-button-{{ product_list_id }}" data-scroll-next aria-label="Next products">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="9,18 15,12 9,6"></polyline>
           </svg>
         </button>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </product-list-scroll-{{ product_list_id }}>
 
