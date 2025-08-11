@@ -1,42 +1,46 @@
+{% doc %}
+  @prompt
+    A horizontally scrollable section containing various products.
+{% enddoc %}
 {% assign product_list_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .product-list-{{ product_list_id }} {
+  .product-list-scroll-{{ product_list_id }} {
     width: 100%;
     padding: {{ block.settings.section_padding }}px 0;
     background-color: {{ block.settings.background_color }};
   }
 
-  .product-list-container-{{ product_list_id }} {
+  .product-list-scroll-container-{{ product_list_id }} {
     max-width: {{ settings.page_width }}px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  .product-list-header-{{ product_list_id }} {
+  .product-list-scroll-header-{{ product_list_id }} {
     margin-bottom: {{ block.settings.header_spacing }}px;
     text-align: {{ block.settings.text_alignment }};
   }
 
-  .product-list-title-{{ product_list_id }} {
+  .product-list-scroll-title-{{ product_list_id }} {
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.title_size }}px;
     margin: 0 0 8px;font-weight: 600;
   }
 
-  .product-list-description-{{ product_list_id }} {
+  .product-list-scroll-description-{{ product_list_id }} {
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.description_size }}px;
     margin: 0;
     opacity: 0.8;
   }
 
-  .product-list-wrapper-{{ product_list_id }} {
+  .product-list-scroll-wrapper-{{ product_list_id }} {
     position: relative;
     overflow: hidden;
   }
 
-  .product-list-track-{{ product_list_id }} {
+  .product-list-scroll-track-{{ product_list_id }} {
     display: flex;
     gap: {{ block.settings.product_spacing }}px;
     overflow-x: auto;
@@ -46,7 +50,7 @@
     padding-bottom: 10px;
   }
 
-  .product-list-track-{{ product_list_id }}::-webkit-scrollbar {
+  .product-list-scroll-track-{{ product_list_id }}::-webkit-scrollbar {
     display: none;
   }
 
@@ -164,14 +168,14 @@
     background-color: {{ block.settings.button_hover_color }};
   }
 
-  .product-list-controls-{{ product_list_id }} {
+  .product-list-scroll-controls-{{ product_list_id }} {
     display: flex;
     justify-content: center;
     gap: 12px;
     margin-top: 20px;
   }
 
-  .product-list-button-nav-{{ product_list_id }} {
+  .product-list-scroll-button-{{ product_list_id }} {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -185,10 +189,10 @@
     transition: background-color 0.3s ease, opacity 0.3s ease;
   }
 
-  .product-list-button-nav-{{ product_list_id }}:hover {
+  .product-list-scroll-button-{{ product_list_id }}:hover {
     background-color: {{ block.settings.control_button_hover_color }};}
 
-  .product-list-button-nav-{{ product_list_id }}:disabled {
+  .product-list-scroll-button-{{ product_list_id }}:disabled {
     opacity: 0.3;
     cursor: not-allowed;
   }
@@ -209,23 +213,23 @@
 {% endstyle %}
 
 <product-list-scroll-{{ product_list_id }}
-  class="product-list-{{ product_list_id }}"
+  class="product-list-scroll-{{ product_list_id }}"
   {{ block.shopify_attributes }}
 >
-  <div class="product-list-container-{{ product_list_id }}">
+  <div class="product-list-scroll-container-{{ product_list_id }}">
     {% if block.settings.title != blank or block.settings.description != blank %}
-      <div class="product-list-header-{{ product_list_id }}">
+      <div class="product-list-scroll-header-{{ product_list_id }}">
         {% if block.settings.title != blank %}
-          <h2 class="product-list-title-{{ product_list_id }}">{{ block.settings.title }}</h2>
+          <h2 class="product-list-scroll-title-{{ product_list_id }}">{{ block.settings.title }}</h2>
         {% endif %}
         {% if block.settings.description != blank %}
-          <div class="product-list-description-{{ product_list_id }}">{{ block.settings.description }}</div>
+          <div class="product-list-scroll-description-{{ product_list_id }}">{{ block.settings.description }}</div>
         {% endif %}
       </div>
     {% endif %}
 
-    <div class="product-list-wrapper-{{ product_list_id }}">
-      <div class="product-list-track-{{ product_list_id }}" data-scroll-track>
+    <div class="product-list-scroll-wrapper-{{ product_list_id }}">
+      <div class="product-list-scroll-track-{{ product_list_id }}" data-scroll-track>
         {% if block.settings.collection != blank %}
           {% for product in block.settings.collection.products limit: block.settings.products_limit %}
             <div class="product-list-card-{{ product_list_id }}">
@@ -306,13 +310,17 @@
     </div>
 
     {% if block.settings.show_scroll_controls %}
-      <div class="product-list-controls-{{ product_list_id }}">
-        <button class="product-list-button-nav-{{ product_list_id }}" data-scroll-prev aria-label="Previous products">
+      <div class="product-list-scroll-controls-{{ product_list_id }}">
+        <button
+          class="product-list-scroll-button-{{ product_list_id }}"
+          data-scroll-prev
+          aria-label="Previous products"
+        >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="15,18 9,12 15,6"></polyline>
           </svg>
         </button>
-        <button class="product-list-button-nav-{{ product_list_id }}" data-scroll-next aria-label="Next products">
+        <button class="product-list-scroll-button-{{ product_list_id }}" data-scroll-next aria-label="Next products">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="9,18 15,12 9,6"></polyline>
           </svg>
