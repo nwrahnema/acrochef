@@ -1,0 +1,150 @@
+{% unless block.settings.pause_on_hover %}
+  {% assign block.settings.pause_on_hover = true %}
+{% endunless %}
+
+{% style %}
+  .marquee {
+      width: 100%;
+      display: inline-block;
+      box-sizing: content-box;
+      padding-left: 100%;
+      padding-top: {{ block.settings.padding }}px;
+      padding-bottom: {{ block.settings.padding }}px;
+      background-color: {{ block.settings.background_color }};
+      color: {{ block.settings.text_color }};
+  }
+
+  .marquee__inner {
+      text-wrap: nowrap;
+      display: inline-block;
+      padding-right: 100%;
+      animation: marquee {{ block.settings.scroll_speed }}s linear infinite;
+      animation-play-state: running;
+      font-size: {{ block.settings.font_size }}px;
+  }
+
+  .marquee:hover .marquee__inner {
+    {%- if block.settings.pause_on_hover -%}
+      animation-play-state: paused;
+    {%- endif -%}
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+{% endstyle %}
+
+<div class="marquee" {{ block.shopify_attributes }}>
+  <div class="marquee__inner">
+    {{ block.settings.announcement_text }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Scrolling announcement",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $50! Limited time offer."
+    },
+    {
+      "type": "header",
+      "content": "Animation"
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "s",
+      "label": "Scroll speed",
+      "default": 15
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Scrolling announcement"
+    }
+  ],
+  "tag": null
+}
+{% endschema %}

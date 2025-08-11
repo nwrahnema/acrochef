@@ -2,55 +2,17 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  .collection-list__item {
-    border: {{ section.settings.border_thickness }}px solid rgba(var(--color-foreground));
-  }
-{%- endstyle -%}
-
 {%- liquid
-  assign num_items = section.blocks.size | plus: 1
+  assign num_items = section.blocks.size
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper isolate{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="collection-list-wrapper isolate{% if section.settings.title == blank %} no-heading{% endif %}{% if section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     <ul
       class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down collection-list--{{ num_items }}-items"
       id="Slider-{{ section.id }}"
       role="list"
     >
-      <li class="collection-list-title-card collection-list__item grid__item title-wrapper--self-padded-mobile title-wrapper--no-top-margin">
-        <h2
-          id="SectionHeading-{{ section.id }}"
-          class="collection-list-title inline-richtext {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: 0;"
-          {% endif %}
-        >
-          {{ section.settings.title }}
-        </h2>
-        {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
-          <div
-            class="center collection-list-view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-            {% endif %}
-          >
-            <a
-              href="{{ routes.collections_url }}"
-              class="button collection-list-view-all-button"
-              id="ViewAllButton-{{ section.id }}"
-              aria-labelledby="ViewAllButton-{{ section.id }} SectionHeading-{{ section.id }}"
-            >
-              {{- 'sections.collection_list.view_all' | t -}}      
-              <span class="icon-wrap collection-list-view-all-icon">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span>
-            </a>       
-          </div>
-        {%- endif -%}
-      </li>
       {%- liquid
         assign columns = num_items
         if columns > 3
@@ -64,7 +26,7 @@
           {{ block.shopify_attributes }}
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
-            style="--animation-order: {{ forloop.index | plus: 1 }};"
+            style="--animation-order: {{ forloop.index }};"
           {% endif %}
         >
           {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
@@ -208,24 +170,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
-    },
-    {
-      "type": "header",
-      "content": "t:settings_schema.global.settings.header__border.content"
-    },
-    {
-      "type": "paragraph",
-      "content": "t:settings_schema.layout.settings.paragraph__border.content"
-    },
-    {
-      "type": "range",
-      "id": "border_thickness",
-      "min": 0,
-      "max": 4,
-      "step": 0.1,
-      "unit": "rem",
-      "label": "t:settings_schema.global.settings.thickness.label",
-      "default": 0
     }
   ],
   "blocks": [

@@ -1,0 +1,601 @@
+{% assign collection_list_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .collection-list-{{ collection_list_id }} {
+    width: 100%;
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .collection-list-container-{{ collection_list_id }} {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .collection-list-header-{{ collection_list_id }} {
+    min-width: 260px;
+    max-width: 320px;
+    flex: 0 0 auto;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .collection-list-title-{{ collection_list_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .collection-list-description-{{ collection_list_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .collection-list-wrapper-{{ collection_list_id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .collection-list-track-{{ collection_list_id }} {
+    display: flex;
+    gap: {{ block.settings.collection_spacing }}px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 10px;
+  }
+
+  .collection-list-track-{{ collection_list_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .collection-card-{{ collection_list_id }} {
+    flex: 0 0 {{ block.settings.collection_width }}px;
+    background-color: {{ block.settings.card_background_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+  }
+
+  .collection-card-{{ collection_list_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .collection-image-wrapper-{{ collection_list_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    overflow: hidden;
+  }
+
+  .collection-image-{{ collection_list_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;transition: transform 0.3s ease;
+  }
+
+  .collection-card-{{ collection_list_id }}:hover .collection-image-{{ collection_list_id }} {
+    transform: scale(1.05);
+  }
+
+  .collection-image-placeholder-{{ collection_list_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+
+  .collection-image-placeholder-{{ collection_list_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .collection-content-{{ collection_list_id }} {
+    padding: {{ block.settings.card_padding }}px;}
+
+  .collection-title-{{ collection_list_id }} {
+    font-size: {{ block.settings.collection_title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.card_text_color }};
+    margin: 0 0 8px;line-height: 1.3;
+  }
+
+  .collection-count-{{ collection_list_id }} {
+    font-size: {{ block.settings.collection_count_size }}px;
+    color: {{ block.settings.card_text_color }};
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .collection-list-controls-{{ collection_list_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .collection-list-btn-{{ collection_list_id }} {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    border: 1px solid {{ block.settings.button_border_color }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .collection-list-btn-{{ collection_list_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: scale(1.1);
+  }
+
+  .collection-list-btn-{{ collection_list_id }}:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;transform: none;
+  }
+
+  .collection-list-btn-{{ collection_list_id }} svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-card-{{ collection_list_id }} {
+      flex: 0 0 {{ block.settings.collection_width | times: 0.8 }}px;
+    }
+
+    .collection-list-container-{{ collection_list_id }} {
+      padding: 0 16px;
+    }
+
+    .collection-list-header-{{ collection_list_id }} {
+      margin-bottom: 24px;
+    }
+
+    .collection-content-{{ collection_list_id }} {
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<collection-scroll-{{ collection_list_id }}
+  class="collection-list-{{ collection_list_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="collection-list-container-{{ collection_list_id }}">
+    {% if block.settings.heading != blank or block.settings.description != blank %}
+      <div class="collection-list-header-{{ collection_list_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="collection-list-title-{{ collection_list_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="collection-list-description-{{ collection_list_id }}">{{ block.settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div style="flex:1;min-width:0;">
+      <div class="collection-list-wrapper-{{ collection_list_id }}">
+        <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track>
+          {% if block.settings.selected_collections != blank %}
+            {% for collection in block.settings.selected_collections %}
+              <a href="{{ collection.url }}" class="collection-card-{{ collection_list_id }}">
+                <div class="collection-image-wrapper-{{ collection_list_id }}">
+                  {% if collection.featured_image %}
+                    <img
+                      src="{{ collection.featured_image | image_url: width: 400 }}"
+                      alt="{{ collection.featured_image.alt | escape }}"
+                      class="collection-image-{{ collection_list_id }}"
+                      loading="lazy"
+                      width="400"
+                      height="{{ block.settings.image_height }}"
+                    >
+                  {% else %}
+                    <div class="collection-image-placeholder-{{ collection_list_id }}">
+                      {{ 'collection-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="collection-content-{{ collection_list_id }}">
+                  <h3 class="collection-title-{{ collection_list_id }}">{{ collection.title }}</h3>
+                  {% if block.settings.show_product_count %}
+                    <p class="collection-count-{{ collection_list_id }}">
+                      {{ collection.products_count }}
+                      {% if collection.products_count == 1 %}
+                        product
+                      {% else %}
+                        products
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..6) %}
+              <div class="collection-card-{{ collection_list_id }}">
+                <div class="collection-image-wrapper-{{ collection_list_id }}">
+                  <div class="collection-image-placeholder-{{ collection_list_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                </div>
+                <div class="collection-content-{{ collection_list_id }}">
+                  <h3 class="collection-title-{{ collection_list_id }}">Collection {{ i }}</h3>
+                  {% if block.settings.show_product_count %}
+                    <p class="collection-count-{{ collection_list_id }}">12 products</p>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      {% if block.settings.show_navigation %}
+        <div class="collection-list-controls-{{ collection_list_id }}">
+          <button
+            class="collection-list-btn-{{ collection_list_id }}"
+            data-scroll-btn="prev"
+            aria-label="Previous collections"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+          <button
+            class="collection-list-btn-{{ collection_list_id }}"
+            data-scroll-btn="next"
+            aria-label="Next collections"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+    </div>
+    <!-- close flex:1 child -->
+  </div>
+</collection-scroll-{{ collection_list_id }}>
+
+<script>
+  (function() {
+  class CollectionScroll{{ collection_list_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('[data-scroll-track]');
+        this.prevBtn = this.querySelector('[data-scroll-btn="prev"]');
+        this.nextBtn = this.querySelector('[data-scroll-btn="next"]');
+
+        if (this.prevBtn && this.nextBtn) {
+          this.setupNavigation();
+          this.updateButtonStates();
+        }
+      }
+
+      setupNavigation() {
+        this.prevBtn.addEventListener('click', () => {
+          this.scrollToDirection('prev');
+        });
+
+        this.nextBtn.addEventListener('click', () => {
+          this.scrollToDirection('next');
+        });
+
+        this.track.addEventListener('scroll', () => {
+          this.updateButtonStates();
+        });
+      }
+
+      scrollToDirection(direction) {
+        const cardWidth = {{ block.settings.collection_width }} + {{ block.settings.collection_spacing }};
+        const scrollAmount = cardWidth * 2;
+
+        if (direction === 'prev') {
+          this.track.scrollLeft -= scrollAmount;
+        } else {
+          this.track.scrollLeft += scrollAmount;
+        }
+      }
+
+      updateButtonStates() {
+        const isAtStart = this.track.scrollLeft <= 0;
+        const isAtEnd = this.track.scrollLeft >= (this.track.scrollWidth - this.track.clientWidth - 1);
+
+        this.prevBtn.disabled = isAtStart;
+        this.nextBtn.disabled = isAtEnd;
+      }
+    }
+
+  customElements.define('collection-scroll-{{ collection_list_id }}', CollectionScroll{{ collection_list_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collection scroll",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by collection"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover our curated collections</p>"
+    },
+    {
+      "type": "collection_list",
+      "id": "selected_collections",
+      "label": "Collections",
+      "limit": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "collection_width",
+      "min": 200,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Collection card width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "collection_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between collections",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height",
+      "default": 200
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "collection_title_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Collection title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "collection_count_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Product count size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card content padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection scroll"
+    }
+  ]
+}
+{% endschema %}

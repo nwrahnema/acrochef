@@ -1,1 +1,146 @@
-{"sections":{"video_banner_cRhGBL":{"type":"video-banner","name":"t:sections.video-banner.presets.name","settings":{"video":"shopify:\/\/files\/videos\/crep acrochef.mp4"}},"collection_list_houseplant_afK3w6":{"type":"collection-list-houseplant","blocks":{"featured_collection_YBUBHw":{"type":"featured_collection","settings":{"collection":"pots"}},"featured_collection_4GCP3V":{"type":"featured_collection","settings":{"collection":"cookware-sets"}},"featured_collection_dKbckt":{"type":"featured_collection","settings":{"collection":"casserole-pans"}}},"block_order":["featured_collection_YBUBHw","featured_collection_4GCP3V","featured_collection_dKbckt"],"name":"t:sections.collection-list-houseplant.presets.name","settings":{"title":"Featured Collections","image_ratio":"square","columns_desktop":4,"color_scheme":"","show_view_all":true,"columns_mobile":"2","padding_top":0,"padding_bottom":0,"padding_right":0,"padding_left":0,"border_thickness":0.5}},"image_banner_fPNqX4":{"type":"image-banner","name":"t:sections.image-banner.presets.name","settings":{"image":"shopify:\/\/shop_images\/OurStory.png","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"image_banner_ADEAVD":{"type":"image-banner","name":"t:sections.image-banner.presets.name","settings":{"image":"shopify:\/\/shop_images\/everydaychef.png","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"product_list_houseplant_jgWwzH":{"type":"product-list-houseplant","blocks":{"featured_product_KJdd3L":{"type":"featured_product","settings":{"product":"10-aluminum-non-stick-pot-with-stainless-steel-trim-glass-lid-vl426"}},"featured_product_dG3tHD":{"type":"featured_product","settings":{"product":"catering-series-15-75-non-stick-2-handle-stock-pot-with-solid-lid-gt440"}},"featured_product_KLr8Dw":{"type":"featured_product","settings":{"product":"9-4-non-stick-die-cast-2-handle-casserole-pot-with-glass-lid-and-silicone-rim-mb424"}}},"block_order":["featured_product_KJdd3L","featured_product_dG3tHD","featured_product_KLr8Dw"],"name":"t:sections.product-list-houseplant.presets.name","settings":{"title":"Our Favorites","image_ratio":"square","columns_desktop":3,"color_scheme":"","show_view_all":true,"columns_mobile":"1","padding_top":36,"padding_bottom":36,"padding_right":36,"padding_left":36,"border_thickness":0.1}},"image_banner_cFUkm8":{"type":"image-banner","name":"t:sections.image-banner.presets.name","settings":{"image":"shopify:\/\/shop_images\/recipecorner2.png","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}}},"order":["video_banner_cRhGBL","collection_list_houseplant_afK3w6","image_banner_fPNqX4","product_list_houseplant_jgWwzH","image_banner_ADEAVD","image_banner_cFUkm8"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "video_banner_cRhGBL": {
+      "type": "video-banner",
+      "name": "t:sections.video-banner.presets.name",
+      "settings": {
+        "video": "shopify://files/videos/crep acrochef.mp4"
+      }
+    },
+    "1754881105207597a6": {
+      "type": "_blocks",
+      "blocks": {
+        "collection_list_KLE8PG": {
+          "type": "collection_list",
+          "settings": {
+            "heading": "Shop by category",
+            "description": "",
+            "selected_collections": [
+              "casserole-pans-new",
+              "cookware-sets-new",
+              "fry-pans-new",
+              "pots-new"
+            ],
+            "show_product_count": true,
+            "text_alignment": "center",
+            "collection_width": 280,
+            "collection_spacing": 20,
+            "image_height": 200,
+            "show_navigation": true,
+            "background_color": "#ffffff",
+            "text_color": "#171171",
+            "card_background_color": "#ffffff",
+            "card_text_color": "#171171",
+            "card_border_color": "#e5e5e5",
+            "button_background_color": "#ffffff",
+            "button_text_color": "#000000",
+            "button_border_color": "#e5e5e5",
+            "button_hover_color": "#f5f5f5",
+            "heading_size": 38,
+            "description_size": 16,
+            "collection_title_size": 18,
+            "collection_count_size": 14,
+            "section_padding_top": 60,
+            "section_padding_bottom": 60,
+            "card_padding": 20,
+            "card_border_radius": 8,
+            "card_border_width": 1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "collection_list_KLE8PG"
+      ],
+      "settings": {}
+    },
+    "1754619754012c3614": {
+      "type": "_blocks",
+      "blocks": {
+        "scrolling_announcement_880df55_AQRaAU": {
+          "type": "scrolling_announcement_880df55",
+          "settings": {
+            "announcement_text": "FREE SHIPPING ON ORDERS OVER $50! NEW CUSTOMERS ENJOY 10% OFF WHEN YOU SIGN UP FOR OUR NEWSLETTER",
+            "scroll_speed": 15,
+            "pause_on_hover": false,
+            "background_color": "#171171",
+            "text_color": "#ffffff",
+            "font_size": 16,
+            "font_weight": "400",
+            "padding": 4
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "scrolling_announcement_880df55_AQRaAU"
+      ],
+      "settings": {}
+    },
+    "17548804239d0657b2": {
+      "type": "_blocks",
+      "blocks": {
+        "product_list_RinR6F": {
+          "type": "product_list",
+          "settings": {
+            "title": "Featured products",
+            "description": "<p>Shop our best-sellers</p>",
+            "collection": "casserole-pans-new",
+            "products_limit": 12,
+            "show_vendor": false,
+            "show_add_to_cart": false,
+            "button_text": "View product",
+            "text_alignment": "center",
+            "card_width": 280,
+            "product_spacing": 20,
+            "image_aspect_ratio": "1/1",
+            "show_scroll_controls": true,
+            "section_padding": 60,
+            "header_spacing": 32,
+            "card_padding": 16,
+            "title_size": 38,
+            "description_size": 16,
+            "product_title_size": 15,
+            "price_size": 16,
+            "background_color": "#ffffff",
+            "text_color": "#171171",
+            "price_color": "#171171",
+            "card_background": "#ffffff",
+            "card_border_color": "#e5e5e5",
+            "card_border_width": 1,
+            "card_border_radius": 8,
+            "badge_color": "#ff4444",
+            "badge_text_color": "#ffffff",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#333333",
+            "button_border_radius": 4,
+            "control_button_color": "#f4f4f4",
+            "control_button_text_color": "#171171",
+            "control_button_hover_color": "#e5e5e5"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "product_list_RinR6F"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "video_banner_cRhGBL",
+    "1754881105207597a6",
+    "1754619754012c3614",
+    "17548804239d0657b2"
+  ]
+}
