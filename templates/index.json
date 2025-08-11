@@ -84,7 +84,7 @@
             "text_color": "#ffffff",
             "font_size": 16,
             "font_weight": "400",
-            "padding": 12
+            "padding": 4
           },
           "blocks": {}
         }
