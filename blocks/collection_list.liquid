@@ -1,48 +1,43 @@
-{% doc %}
-  @prompt
-    Make a horizontally scrollable collection list, similar to the "Product scroll section" you already generated.
-
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign collection_list_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .ai-collection-scroll-{{ ai_gen_id }} {
+  .collection-list-{{ collection_list_id }} {
     width: 100%;
     padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
     background-color: {{ block.settings.background_color }};
   }
 
-  .ai-collection-scroll-container-{{ ai_gen_id }} {
+  .collection-list-container-{{ collection_list_id }} {
     max-width: {{ settings.page_width }}px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
-  .ai-collection-scroll-header-{{ ai_gen_id }} {
+  .collection-list-header-{{ collection_list_id }} {
     text-align: {{ block.settings.text_alignment }};
     margin-bottom: 40px;
   }
 
-  .ai-collection-scroll-title-{{ ai_gen_id }} {
+  .collection-list-title-{{ collection_list_id }} {
     font-size: {{ block.settings.heading_size }}px;
     color: {{ block.settings.text_color }};
     margin: 0 0 16px;
     font-weight: 600;
   }
 
-  .ai-collection-scroll-description-{{ ai_gen_id }} {
+  .collection-list-description-{{ collection_list_id }} {
     font-size: {{ block.settings.description_size }}px;
     color: {{ block.settings.text_color }};
     margin: 0;
     opacity: 0.8;
   }
 
-  .ai-collection-scroll-wrapper-{{ ai_gen_id }} {
+  .collection-list-wrapper-{{ collection_list_id }} {
     position: relative;
     overflow: hidden;
   }
 
-  .ai-collection-scroll-track-{{ ai_gen_id }} {
+  .collection-list-track-{{ collection_list_id }} {
     display: flex;
     gap: {{ block.settings.collection_spacing }}px;
     overflow-x: auto;
@@ -52,11 +47,11 @@
     padding-bottom: 10px;
   }
 
-  .ai-collection-scroll-track-{{ ai_gen_id }}::-webkit-scrollbar {
+  .collection-list-track-{{ collection_list_id }}::-webkit-scrollbar {
     display: none;
   }
 
-  .ai-collection-card-{{ ai_gen_id }} {
+  .collection-card-{{ collection_list_id }} {
     flex: 0 0 {{ block.settings.collection_width }}px;
     background-color: {{ block.settings.card_background_color }};
     border-radius: {{ block.settings.card_border_radius }}px;
@@ -67,29 +62,29 @@
     border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
   }
 
-  .ai-collection-card-{{ ai_gen_id }}:hover {
+  .collection-card-{{ collection_list_id }}:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
-  .ai-collection-image-wrapper-{{ ai_gen_id }} {
+  .collection-image-wrapper-{{ collection_list_id }} {
     position: relative;
     width: 100%;
     height: {{ block.settings.image_height }}px;
     overflow: hidden;
   }
 
-  .ai-collection-image-{{ ai_gen_id }} {
+  .collection-image-{{ collection_list_id }} {
     width: 100%;
     height: 100%;
     object-fit: cover;transition: transform 0.3s ease;
   }
 
-  .ai-collection-card-{{ ai_gen_id }}:hover .ai-collection-image-{{ ai_gen_id }} {
+  .collection-card-{{ collection_list_id }}:hover .collection-image-{{ collection_list_id }} {
     transform: scale(1.05);
   }
 
-  .ai-collection-image-placeholder-{{ ai_gen_id }} {
+  .collection-image-placeholder-{{ collection_list_id }} {
     width: 100%;
     height: 100%;
     background-color: #f4f4f4;
@@ -97,37 +92,37 @@
     align-items: center;
     justify-content: center;}
 
-  .ai-collection-image-placeholder-{{ ai_gen_id }} svg {
+  .collection-image-placeholder-{{ collection_list_id }} svg {
     width: 60%;
     height: 60%;
     opacity: 0.3;
   }
 
-  .ai-collection-content-{{ ai_gen_id }} {
+  .collection-content-{{ collection_list_id }} {
     padding: {{ block.settings.card_padding }}px;}
 
-  .ai-collection-title-{{ ai_gen_id }} {
+  .collection-title-{{ collection_list_id }} {
     font-size: {{ block.settings.collection_title_size }}px;
     font-weight: 600;
     color: {{ block.settings.card_text_color }};
     margin: 0 0 8px;line-height: 1.3;
   }
 
-  .ai-collection-count-{{ ai_gen_id }} {
+  .collection-count-{{ collection_list_id }} {
     font-size: {{ block.settings.collection_count_size }}px;
     color: {{ block.settings.card_text_color }};
     opacity: 0.7;
     margin: 0;
   }
 
-  .ai-collection-scroll-controls-{{ ai_gen_id }} {
+  .collection-list-controls-{{ collection_list_id }} {
     display: flex;
     justify-content: center;
     gap: 12px;
     margin-top: 30px;
   }
 
-  .ai-collection-scroll-btn-{{ ai_gen_id }} {
+  .collection-list-btn-{{ collection_list_id }} {
     width: 44px;
     height: 44px;
     border-radius: 50%;
@@ -141,80 +136,80 @@
     transition: all 0.3s ease;
   }
 
-  .ai-collection-scroll-btn-{{ ai_gen_id }}:hover {
+  .collection-list-btn-{{ collection_list_id }}:hover {
     background-color: {{ block.settings.button_hover_color }};
     transform: scale(1.1);
   }
 
-  .ai-collection-scroll-btn-{{ ai_gen_id }}:disabled {
+  .collection-list-btn-{{ collection_list_id }}:disabled {
     opacity: 0.3;
     cursor: not-allowed;transform: none;
   }
 
-  .ai-collection-scroll-btn-{{ ai_gen_id }} svg {
+  .collection-list-btn-{{ collection_list_id }} svg {
     width: 20px;
     height: 20px;
   }
 
   @media screen and (max-width: 749px) {
-    .ai-collection-card-{{ ai_gen_id }} {
+    .collection-card-{{ collection_list_id }} {
       flex: 0 0 {{ block.settings.collection_width | times: 0.8 }}px;
     }
 
-    .ai-collection-scroll-container-{{ ai_gen_id }} {
+    .collection-list-container-{{ collection_list_id }} {
       padding: 0 16px;
     }
 
-    .ai-collection-scroll-header-{{ ai_gen_id }} {
+    .collection-list-header-{{ collection_list_id }} {
       margin-bottom: 24px;
     }
 
-    .ai-collection-content-{{ ai_gen_id }} {
+    .collection-content-{{ collection_list_id }} {
       padding: {{ block.settings.card_padding | times: 0.8 }}px;
     }
   }
 {% endstyle %}
 
-<collection-scroll-{{ ai_gen_id }}
-  class="ai-collection-scroll-{{ ai_gen_id }}"
+<collection-scroll-{{ collection_list_id }}
+  class="collection-list-{{ collection_list_id }}"
   {{ block.shopify_attributes }}
 >
-  <div class="ai-collection-scroll-container-{{ ai_gen_id }}">
+  <div class="collection-list-container-{{ collection_list_id }}">
     {% if block.settings.heading != blank or block.settings.description != blank %}
-      <div class="ai-collection-scroll-header-{{ ai_gen_id }}">
+      <div class="collection-list-header-{{ collection_list_id }}">
         {% if block.settings.heading != blank %}
-          <h2 class="ai-collection-scroll-title-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+          <h2 class="collection-list-title-{{ collection_list_id }}">{{ block.settings.heading }}</h2>
         {% endif %}
         {% if block.settings.description != blank %}
-          <div class="ai-collection-scroll-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+          <div class="collection-list-description-{{ collection_list_id }}">{{ block.settings.description }}</div>
         {% endif %}
       </div>
     {% endif %}
 
-    <div class="ai-collection-scroll-wrapper-{{ ai_gen_id }}">
-      <div class="ai-collection-scroll-track-{{ ai_gen_id }}" data-scroll-track>
+    <div class="collection-list-wrapper-{{ collection_list_id }}">
+      <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track>
         {% if block.settings.selected_collections != blank %}
           {% for collection in block.settings.selected_collections %}
-            <a href="{{ collection.url }}" class="ai-collection-card-{{ ai_gen_id }}">
-              <div class="ai-collection-image-wrapper-{{ ai_gen_id }}">
+            <a href="{{ collection.url }}" class="collection-card-{{ collection_list_id }}">
+              <div class="collection-image-wrapper-{{ collection_list_id }}">
                 {% if collection.featured_image %}
                   <img
                     src="{{ collection.featured_image | image_url: width: 400 }}"
                     alt="{{ collection.featured_image.alt | escape }}"
-                    class="ai-collection-image-{{ ai_gen_id }}"
+                    class="collection-image-{{ collection_list_id }}"
                     loading="lazy"width="400"
                     height="{{ block.settings.image_height }}"
                   >
                 {% else %}
-                  <div class="ai-collection-image-placeholder-{{ ai_gen_id }}">
+                  <div class="collection-image-placeholder-{{ collection_list_id }}">
                     {{ 'collection-1' | placeholder_svg_tag }}
                   </div>
                 {% endif %}
               </div>
-              <div class="ai-collection-content-{{ ai_gen_id }}">
-                <h3 class="ai-collection-title-{{ ai_gen_id }}">{{ collection.title }}</h3>
+              <div class="collection-content-{{ collection_list_id }}">
+                <h3 class="collection-title-{{ collection_list_id }}">{{ collection.title }}</h3>
                 {% if block.settings.show_product_count %}
-                  <p class="ai-collection-count-{{ ai_gen_id }}">
+                  <p class="collection-count-{{ collection_list_id }}">
                     {{ collection.products_count }}
                     {% if collection.products_count == 1 %}
                       product
@@ -228,15 +223,15 @@
           {% endfor %}
         {% else %}
           {% for i in (1..6) %}
-            <div class="ai-collection-card-{{ ai_gen_id }}">
-              <div class="ai-collection-image-wrapper-{{ ai_gen_id }}"><div class="ai-collection-image-placeholder-{{ ai_gen_id }}">
+            <div class="collection-card-{{ collection_list_id }}">
+              <div class="collection-image-wrapper-{{ collection_list_id }}"><div class="collection-image-placeholder-{{ collection_list_id }}">
                   {{ 'collection-1' | placeholder_svg_tag }}
                 </div>
               </div>
-              <div class="ai-collection-content-{{ ai_gen_id }}">
-                <h3 class="ai-collection-title-{{ ai_gen_id }}">Collection {{ i }}</h3>
+              <div class="collection-content-{{ collection_list_id }}">
+                <h3 class="collection-title-{{ collection_list_id }}">Collection {{ i }}</h3>
                 {% if block.settings.show_product_count %}
-                  <p class="ai-collection-count-{{ ai_gen_id }}">12 products</p>
+                  <p class="collection-count-{{ collection_list_id }}">12 products</p>
                 {% endif %}
               </div>
             </div>
@@ -246,9 +241,9 @@
     </div>
 
     {% if block.settings.show_navigation %}
-      <div class="ai-collection-scroll-controls-{{ ai_gen_id }}">
+      <div class="collection-list-controls-{{ collection_list_id }}">
         <button
-          class="ai-collection-scroll-btn-{{ ai_gen_id }}"
+          class="collection-list-btn-{{ collection_list_id }}"
           data-scroll-btn="prev"
           aria-label="Previous collections"
         >
@@ -257,7 +252,7 @@
           </svg>
         </button>
         <button
-          class="ai-collection-scroll-btn-{{ ai_gen_id }}"
+          class="collection-list-btn-{{ collection_list_id }}"
           data-scroll-btn="next"
           aria-label="Next collections"
         >
@@ -268,11 +263,11 @@
       </div>
     {% endif %}
   </div>
-</collection-scroll-{{ ai_gen_id }}>
+</collection-scroll-{{ collection_list_id }}>
 
 <script>
   (function() {
-    class CollectionScroll{{ ai_gen_id }} extends HTMLElement {
+  class CollectionScroll{{ collection_list_id }} extends HTMLElement {
       constructor() {
         super();
       }
@@ -322,7 +317,7 @@
       }
     }
 
-    customElements.define('collection-scroll-{{ ai_gen_id }}', CollectionScroll{{ ai_gen_id }});
+  customElements.define('collection-scroll-{{ collection_list_id }}', CollectionScroll{{ collection_list_id }});
   })();
 </script>
 
