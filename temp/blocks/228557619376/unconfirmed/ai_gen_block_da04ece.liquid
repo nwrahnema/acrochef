@@ -1,6 +1,584 @@
+{% doc %}
+  @prompt
+    Make a horizontally scrollable collection list, similar to the "Product scroll section" you already generated.
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collection-scroll-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-collection-scroll-container-{{ ai_gen_id }} {
+    max-width: {{ settings.page_width }}px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-collection-scroll-header-{{ ai_gen_id }} {
+    text-align: {{ block.settings.text_alignment }};
+    margin-bottom: 40px;
+  }
+
+  .ai-collection-scroll-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0 0 16px;
+    font-weight: 600;
+  }
+
+  .ai-collection-scroll-description-{{ ai_gen_id }} {
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .ai-collection-scroll-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-collection-scroll-track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.collection_spacing }}px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 10px;
+  }
+
+  .ai-collection-scroll-track-{{ ai_gen_id }}::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ai-collection-card-{{ ai_gen_id }} {
+    flex: 0 0 {{ block.settings.collection_width }}px;
+    background-color: {{ block.settings.card_background_color }};
+    border-radius: {{ block.settings.card_border_radius }}px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
+  }
+
+  .ai-collection-card-{{ ai_gen_id }}:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .ai-collection-image-wrapper-{{ ai_gen_id }} {
+    position: relative;
+    width: 100%;
+    height: {{ block.settings.image_height }}px;
+    overflow: hidden;
+  }
+
+  .ai-collection-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;transition: transform 0.3s ease;
+  }
+
+  .ai-collection-card-{{ ai_gen_id }}:hover .ai-collection-image-{{ ai_gen_id }} {
+    transform: scale(1.05);
+  }
+
+  .ai-collection-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+
+  .ai-collection-image-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-collection-content-{{ ai_gen_id }} {
+    padding: {{ block.settings.card_padding }}px;}
+
+  .ai-collection-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.collection_title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.card_text_color }};
+    margin: 0 0 8px;line-height: 1.3;
+  }
+
+  .ai-collection-count-{{ ai_gen_id }} {
+    font-size: {{ block.settings.collection_count_size }}px;
+    color: {{ block.settings.card_text_color }};
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  .ai-collection-scroll-controls-{{ ai_gen_id }} {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+  }
+
+  .ai-collection-scroll-btn-{{ ai_gen_id }} {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: {{ block.settings.button_background_color }};
+    color: {{ block.settings.button_text_color }};
+    border: 1px solid {{ block.settings.button_border_color }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .ai-collection-scroll-btn-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_color }};
+    transform: scale(1.1);
+  }
+
+  .ai-collection-scroll-btn-{{ ai_gen_id }}:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;transform: none;
+  }
+
+  .ai-collection-scroll-btn-{{ ai_gen_id }} svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-collection-card-{{ ai_gen_id }} {
+      flex: 0 0 {{ block.settings.collection_width | times: 0.8 }}px;
+    }
+
+    .ai-collection-scroll-container-{{ ai_gen_id }} {
+      padding: 0 16px;
+    }
+
+    .ai-collection-scroll-header-{{ ai_gen_id }} {
+      margin-bottom: 24px;
+    }
+
+    .ai-collection-content-{{ ai_gen_id }} {
+      padding: {{ block.settings.card_padding | times: 0.8 }}px;
+    }
+  }
+{% endstyle %}
+
+<collection-scroll-{{ ai_gen_id }}
+  class="ai-collection-scroll-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-collection-scroll-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank or block.settings.description != blank %}
+      <div class="ai-collection-scroll-header-{{ ai_gen_id }}">
+        {% if block.settings.heading != blank %}
+          <h2 class="ai-collection-scroll-title-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+        {% endif %}
+        {% if block.settings.description != blank %}
+          <div class="ai-collection-scroll-description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="ai-collection-scroll-wrapper-{{ ai_gen_id }}">
+      <div class="ai-collection-scroll-track-{{ ai_gen_id }}" data-scroll-track>
+        {% if block.settings.selected_collections != blank %}
+          {% for collection in block.settings.selected_collections %}
+            <a href="{{ collection.url }}" class="ai-collection-card-{{ ai_gen_id }}">
+              <div class="ai-collection-image-wrapper-{{ ai_gen_id }}">
+                {% if collection.featured_image %}
+                  <img
+                    src="{{ collection.featured_image | image_url: width: 400 }}"
+                    alt="{{ collection.featured_image.alt | escape }}"
+                    class="ai-collection-image-{{ ai_gen_id }}"
+                    loading="lazy"width="400"
+                    height="{{ block.settings.image_height }}"
+                  >
+                {% else %}
+                  <div class="ai-collection-image-placeholder-{{ ai_gen_id }}">
+                    {{ 'collection-1' | placeholder_svg_tag }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="ai-collection-content-{{ ai_gen_id }}">
+                <h3 class="ai-collection-title-{{ ai_gen_id }}">{{ collection.title }}</h3>
+                {% if block.settings.show_product_count %}
+                  <p class="ai-collection-count-{{ ai_gen_id }}">
+                    {{ collection.products_count }}
+                    {% if collection.products_count == 1 %}
+                      product
+                    {% else %}
+                      products
+                    {% endif %}
+                  </p>
+                {% endif %}
+              </div>
+            </a>
+          {% endfor %}
+        {% else %}
+          {% for i in (1..6) %}
+            <div class="ai-collection-card-{{ ai_gen_id }}">
+              <div class="ai-collection-image-wrapper-{{ ai_gen_id }}"><div class="ai-collection-image-placeholder-{{ ai_gen_id }}">
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+              </div>
+              <div class="ai-collection-content-{{ ai_gen_id }}">
+                <h3 class="ai-collection-title-{{ ai_gen_id }}">Collection {{ i }}</h3>
+                {% if block.settings.show_product_count %}
+                  <p class="ai-collection-count-{{ ai_gen_id }}">12 products</p>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+
+    {% if block.settings.show_navigation %}
+      <div class="ai-collection-scroll-controls-{{ ai_gen_id }}">
+        <button
+          class="ai-collection-scroll-btn-{{ ai_gen_id }}"
+          data-scroll-btn="prev"
+          aria-label="Previous collections"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+        <button
+          class="ai-collection-scroll-btn-{{ ai_gen_id }}"
+          data-scroll-btn="next"
+          aria-label="Next collections"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9,18 15,12 9,6"></polyline>
+          </svg>
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</collection-scroll-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CollectionScroll{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('[data-scroll-track]');
+        this.prevBtn = this.querySelector('[data-scroll-btn="prev"]');
+        this.nextBtn = this.querySelector('[data-scroll-btn="next"]');
+
+        if (this.prevBtn && this.nextBtn) {
+          this.setupNavigation();
+          this.updateButtonStates();
+        }
+      }
+
+      setupNavigation() {
+        this.prevBtn.addEventListener('click', () => {
+          this.scrollToDirection('prev');
+        });
+
+        this.nextBtn.addEventListener('click', () => {
+          this.scrollToDirection('next');
+        });
+
+        this.track.addEventListener('scroll', () => {
+          this.updateButtonStates();
+        });
+      }
+
+      scrollToDirection(direction) {
+        const cardWidth = {{ block.settings.collection_width }} + {{ block.settings.collection_spacing }};
+        const scrollAmount = cardWidth * 2;
+
+        if (direction === 'prev') {
+          this.track.scrollLeft -= scrollAmount;
+        } else {
+          this.track.scrollLeft += scrollAmount;
+        }
+      }
+
+      updateButtonStates() {
+        const isAtStart = this.track.scrollLeft <= 0;
+        const isAtEnd = this.track.scrollLeft >= (this.track.scrollWidth - this.track.clientWidth - 1);
+
+        this.prevBtn.disabled = isAtStart;
+        this.nextBtn.disabled = isAtEnd;
+      }
+    }
+
+    customElements.define('collection-scroll-{{ ai_gen_id }}', CollectionScroll{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Collection scroll",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by collection"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Discover our curated collections</p>"
+    },
+    {
+      "type": "collection_list",
+      "id": "selected_collections",
+      "label": "Collections",
+      "limit": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "collection_width",
+      "min": 200,
+      "max": 400,
+      "step": 20,
+      "unit": "px",
+      "label": "Collection card width",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "collection_spacing",
+      "min": 8,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Space between collections",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 150,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Image height",
+      "default": 200
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_background_color",
+      "label": "Card background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text_color",
+      "label": "Card text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Button border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "collection_title_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Collection title size",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "collection_count_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Product count size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "card_padding",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card content padding",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection scroll"
+    }
+  ]
+}
 {% endschema %}
