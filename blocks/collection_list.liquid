@@ -8,14 +8,19 @@
   }
 
   .collection-list-container-{{ collection_list_id }} {
-    max-width: {{ settings.page_width }}px;
-    margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
   }
 
   .collection-list-header-{{ collection_list_id }} {
-    text-align: {{ block.settings.text_alignment }};
-    margin-bottom: 40px;
+    min-width: 260px;
+    max-width: 320px;
+    flex: 0 0 auto;
+    text-align: left;
+    margin-bottom: 0;
   }
 
   .collection-list-title-{{ collection_list_id }} {
@@ -186,82 +191,99 @@
       </div>
     {% endif %}
 
-    <div class="collection-list-wrapper-{{ collection_list_id }}">
-      <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track>
-        {% if block.settings.selected_collections != blank %}
-          {% for collection in block.settings.selected_collections %}
-            <a href="{{ collection.url }}" class="collection-card-{{ collection_list_id }}">
-              <div class="collection-image-wrapper-{{ collection_list_id }}">
-                {% if collection.featured_image %}
-                  <img
-                    src="{{ collection.featured_image | image_url: width: 400 }}"
-                    alt="{{ collection.featured_image.alt | escape }}"
-                    class="collection-image-{{ collection_list_id }}"
-                    loading="lazy"width="400"
-                    height="{{ block.settings.image_height }}"
-                  >
-                {% else %}
+    <div style="flex:1;min-width:0;">
+      <div class="collection-list-wrapper-{{ collection_list_id }}">
+        <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track>
+          {% if block.settings.selected_collections != blank %}
+            {% for collection in block.settings.selected_collections %}
+              <a href="{{ collection.url }}" class="collection-card-{{ collection_list_id }}">
+                <div class="collection-image-wrapper-{{ collection_list_id }}">
+                  {% if collection.featured_image %}
+                    <img
+                      src="{{ collection.featured_image | image_url: width: 400 }}"
+                      alt="{{ collection.featured_image.alt | escape }}"
+                      class="collection-image-{{ collection_list_id }}"
+                      loading="lazy"
+                      width="400"
+                      height="{{ block.settings.image_height }}"
+                    >
+                  {% else %}
+                    <div class="collection-image-placeholder-{{ collection_list_id }}">
+                      {{ 'collection-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                </div>
+                <div class="collection-content-{{ collection_list_id }}">
+                  <h3 class="collection-title-{{ collection_list_id }}">{{ collection.title }}</h3>
+                  {% if block.settings.show_product_count %}
+                    <p class="collection-count-{{ collection_list_id }}">
+                      {{ collection.products_count }}
+                      {% if collection.products_count == 1 %}
+                        product
+                      {% else %}
+                        products
+                      {% endif %}
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          {% else %}
+            {% for i in (1..6) %}
+              <div class="collection-card-{{ collection_list_id }}">
+                <div class="collection-image-wrapper-{{ collection_list_id }}">
                   <div class="collection-image-placeholder-{{ collection_list_id }}">
                     {{ 'collection-1' | placeholder_svg_tag }}
                   </div>
-                {% endif %}
-              </div>
-              <div class="collection-content-{{ collection_list_id }}">
-                <h3 class="collection-title-{{ collection_list_id }}">{{ collection.title }}</h3>
-                {% if block.settings.show_product_count %}
-                  <p class="collection-count-{{ collection_list_id }}">
-                    {{ collection.products_count }}
-                    {% if collection.products_count == 1 %}
-                      product
-                    {% else %}
-                      products
-                    {% endif %}
-                  </p>
-                {% endif %}
-              </div>
-            </a>
-          {% endfor %}
-        {% else %}
-          {% for i in (1..6) %}
-            <div class="collection-card-{{ collection_list_id }}">
-              <div class="collection-image-wrapper-{{ collection_list_id }}"><div class="collection-image-placeholder-{{ collection_list_id }}">
-                  {{ 'collection-1' | placeholder_svg_tag }}
+                </div>
+                <div class="collection-content-{{ collection_list_id }}">
+                  <h3 class="collection-title-{{ collection_list_id }}">Collection {{ i }}</h3>
+                  {% if block.settings.show_product_count %}
+                    <p class="collection-count-{{ collection_list_id }}">12 products</p>
+                  {% endif %}
                 </div>
               </div>
-              <div class="collection-content-{{ collection_list_id }}">
-                <h3 class="collection-title-{{ collection_list_id }}">Collection {{ i }}</h3>
-                {% if block.settings.show_product_count %}
-                  <p class="collection-count-{{ collection_list_id }}">12 products</p>
-                {% endif %}
-              </div>
-            </div>
-          {% endfor %}
-        {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
       </div>
-    </div>
 
-    {% if block.settings.show_navigation %}
-      <div class="collection-list-controls-{{ collection_list_id }}">
-        <button
-          class="collection-list-btn-{{ collection_list_id }}"
-          data-scroll-btn="prev"
-          aria-label="Previous collections"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15,18 9,12 15,6"></polyline>
-          </svg>
-        </button>
-        <button
-          class="collection-list-btn-{{ collection_list_id }}"
-          data-scroll-btn="next"
-          aria-label="Next collections"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="9,18 15,12 9,6"></polyline>
-          </svg>
-        </button>
-      </div>
-    {% endif %}
+      {% if block.settings.show_navigation %}
+        <div class="collection-list-controls-{{ collection_list_id }}">
+          <button
+            class="collection-list-btn-{{ collection_list_id }}"
+            data-scroll-btn="prev"
+            aria-label="Previous collections"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+          <button
+            class="collection-list-btn-{{ collection_list_id }}"
+            data-scroll-btn="next"
+            aria-label="Next collections"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9,18 15,12 9,6"></polyline>
+            </svg>
+          </button>
+        </div>
+      {% endif %}
+    </div>
+    <!-- close flex:1 child -->
   </div>
 </collection-scroll-{{ collection_list_id }}>
 
