@@ -192,8 +192,26 @@
     {% endif %}
 
     <div style="flex:1;min-width:0;">
-      <div class="collection-list-wrapper-{{ collection_list_id }}">
-        <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track>
+      <div class="collection-list-wrapper-{{ collection_list_id }}" style="display: flex; align-items: center; gap: 0;">
+        {% if block.settings.show_navigation %}
+          <button
+            class="collection-list-btn-{{ collection_list_id }}"
+            data-scroll-btn="prev"
+            aria-label="Previous collections"
+            style="margin-right: 12px;"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15,18 9,12 15,6"></polyline>
+            </svg>
+          </button>
+        {% endif %}
+        <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track style="flex:1; min-width:0;">
           {% if block.settings.selected_collections != blank %}
             {% for collection in block.settings.selected_collections %}
               <a href="{{ collection.url }}" class="collection-card-{{ collection_list_id }}">
@@ -246,29 +264,12 @@
             {% endfor %}
           {% endif %}
         </div>
-      </div>
-
-      {% if block.settings.show_navigation %}
-        <div class="collection-list-controls-{{ collection_list_id }}">
-          <button
-            class="collection-list-btn-{{ collection_list_id }}"
-            data-scroll-btn="prev"
-            aria-label="Previous collections"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="15,18 9,12 15,6"></polyline>
-            </svg>
-          </button>
+        {% if block.settings.show_navigation %}
           <button
             class="collection-list-btn-{{ collection_list_id }}"
             data-scroll-btn="next"
             aria-label="Next collections"
+            style="margin-left: 12px;"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -280,8 +281,8 @@
               <polyline points="9,18 15,12 9,6"></polyline>
             </svg>
           </button>
-        </div>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
     <!-- close flex:1 child -->
   </div>
