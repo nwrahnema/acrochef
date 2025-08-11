@@ -19,8 +19,8 @@
     "1754881105207597a6": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_da04ece_KLE8PG": {
-          "type": "ai_gen_block_da04ece",
+        "collection_list_KLE8PG": {
+          "type": "collection_list",
           "settings": {
             "heading": "Shop by category",
             "description": "",
@@ -59,7 +59,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_da04ece_KLE8PG"
+        "collection_list_KLE8PG"
       ],
       "settings": {}
     },
