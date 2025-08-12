@@ -11,40 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "17549402357207c5c8": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_1913763_AHhgWY": {
-          "type": "ai_gen_block_1913763",
-          "settings": {
-            "logo": "shopify://shop_images/Acrochef-Logo-Black_d5fb5755-4a78-4e44-9357-2e63c1bd8ed8.png",
-            "logo_height": 50,
-            "search_placeholder": "Search products...",
-            "search_border_radius": 6,
-            "menu": "main-menu",
-            "menu_spacing": 30,
-            "nav_font_size": 14,
-            "nav_font_weight": "500",
-            "top_padding": 16,
-            "bottom_padding": 12,
-            "border_thickness": 1,
-            "background_color": "#ffffff",
-            "nav_background_color": "#ffffff",
-            "text_color": "#000000",
-            "nav_text_color": "#000000",
-            "accent_color": "#000f9f",
-            "border_color": "#e5e5e5",
-            "search_background_color": "#f8f8f8",
-            "search_border_color": "#e5e5e5"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_1913763_AHhgWY"
-      ],
-      "settings": {}
-    },
     "header": {
       "type": "header",
       "custom_css": [
@@ -69,7 +35,6 @@
     }
   },
   "order": [
-    "17549402357207c5c8",
     "header"
   ]
 }
