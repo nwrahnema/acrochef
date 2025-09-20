@@ -2,20 +2,16 @@
   .video-banner {
     display: block;
     width: 100%;
-    height: 30vh;
+    height: 85vh;
     object-fit: cover;
     object-position: center center;
+    padding: 3rem;
   }
 {%- endstyle -%}
 
-{{ 
-  section.settings.video 
-  | video_tag:
-    autoplay: true,
-    loop: true,
-    controls: false,
-    muted: true,
-    class: "video-banner"
+{{
+  section.settings.video
+  | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
 }}
 
 {% schema %}
@@ -35,7 +31,7 @@
       "type": "video",
       "id": "video",
       "label": "t:sections.video-banner.settings.video.label"
-    },
+    }
   ],
   "presets": [
     {
