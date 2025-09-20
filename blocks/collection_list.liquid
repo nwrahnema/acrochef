@@ -180,17 +180,6 @@
   {{ block.shopify_attributes }}
 >
   <div class="collection-list-container-{{ collection_list_id }}">
-    {% if block.settings.heading != blank or block.settings.description != blank %}
-      <div class="collection-list-header-{{ collection_list_id }}">
-        {% if block.settings.heading != blank %}
-          <h2 class="collection-list-title-{{ collection_list_id }}">{{ block.settings.heading }}</h2>
-        {% endif %}
-        {% if block.settings.description != blank %}
-          <div class="collection-list-description-{{ collection_list_id }}">{{ block.settings.description }}</div>
-        {% endif %}
-      </div>
-    {% endif %}
-
     <div style="flex:1;min-width:0;">
       <div class="collection-list-wrapper-{{ collection_list_id }}" style="display: flex; align-items: center; gap: 0;">
         {% if block.settings.show_navigation %}
@@ -351,12 +340,6 @@
     {
       "type": "header",
       "content": "Content"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Shop by collection"
     },
     {
       "type": "richtext",
