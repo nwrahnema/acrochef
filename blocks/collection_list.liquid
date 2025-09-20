@@ -8,7 +8,7 @@
   }
 
   .collection-list-container-{{ collection_list_id }} {
-    padding: 20px;
+    padding: 70px 20px 60px 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -49,7 +49,7 @@
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-bottom: 10px;
+    justify-content: center;
   }
 
   .collection-list-track-{{ collection_list_id }}::-webkit-scrollbar {
@@ -59,17 +59,10 @@
   .collection-card-{{ collection_list_id }} {
     flex: 0 0 {{ block.settings.collection_width }}px;
     background-color: {{ block.settings.card_background_color }};
-    border-radius: {{ block.settings.card_border_radius }}px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: {{ block.settings.card_border_width }}px solid {{ block.settings.card_border_color }};
-  }
-
-  .collection-card-{{ collection_list_id }}:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   .collection-image-wrapper-{{ collection_list_id }} {
@@ -77,6 +70,7 @@
     width: 100%;
     height: {{ block.settings.image_height }}px;
     overflow: hidden;
+    border-radius: {{ block.settings.card_border_radius }}px;
   }
 
   .collection-image-{{ collection_list_id }} {
@@ -104,20 +98,17 @@
   }
 
   .collection-content-{{ collection_list_id }} {
-    padding: {{ block.settings.card_padding }}px;}
+    padding: {{ block.settings.card_padding }}px;
+    padding-bottom: 0;
+  }
 
   .collection-title-{{ collection_list_id }} {
     font-size: {{ block.settings.collection_title_size }}px;
     font-weight: 600;
     color: {{ block.settings.card_text_color }};
     margin: 0 0 8px;line-height: 1.3;
-  }
-
-  .collection-count-{{ collection_list_id }} {
-    font-size: {{ block.settings.collection_count_size }}px;
-    color: {{ block.settings.card_text_color }};
-    opacity: 0.7;
-    margin: 0;
+    display: flex;
+    justify-content: center;
   }
 
   .collection-list-controls-{{ collection_list_id }} {
@@ -222,16 +213,6 @@
                 </div>
                 <div class="collection-content-{{ collection_list_id }}">
                   <h3 class="collection-title-{{ collection_list_id }}">{{ collection.title }}</h3>
-                  {% if block.settings.show_product_count %}
-                    <p class="collection-count-{{ collection_list_id }}">
-                      {{ collection.products_count }}
-                      {% if collection.products_count == 1 %}
-                        product
-                      {% else %}
-                        products
-                      {% endif %}
-                    </p>
-                  {% endif %}
                 </div>
               </a>
             {% endfor %}
@@ -245,9 +226,6 @@
                 </div>
                 <div class="collection-content-{{ collection_list_id }}">
                   <h3 class="collection-title-{{ collection_list_id }}">Collection {{ i }}</h3>
-                  {% if block.settings.show_product_count %}
-                    <p class="collection-count-{{ collection_list_id }}">12 products</p>
-                  {% endif %}
                 </div>
               </div>
             {% endfor %}
@@ -352,12 +330,6 @@
       "id": "selected_collections",
       "label": "Collections",
       "limit": 12
-    },
-    {
-      "type": "checkbox",
-      "id": "show_product_count",
-      "label": "Show product count",
-      "default": true
     },
     {
       "type": "header",
