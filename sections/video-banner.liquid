@@ -1,18 +1,71 @@
 {%- style -%}
+  .video-banner-container {
+    position: relative;
+    height: min(70vh, 800px);
+    margin-inline: auto;
+    max-width: 1600px;
+    display: flex;
+    justify-content: center;
+  }
+
   .video-banner {
     display: block;
     width: 100%;
-    height: 85vh;
+    height: 100%;
     object-fit: cover;
     object-position: center center;
+    position: absolute;
     padding: 3rem;
+    filter: brightness(0.6);
+  }
+
+  .video-banner-text {
+    margin-top: min(20vh, 200px);
+    z-index: 1;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .video-banner-hero {
+    font-size: clamp(3rem, 6vw, 6rem);
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .video-banner-shop-btn {
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    background: #da4a22;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    text-shadow: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: inline-block;
   }
 {%- endstyle -%}
 
-{{
-  section.settings.video
-  | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
-}}
+<div class="video-banner-container">
+  {{
+    section.settings.video
+    | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
+  }}
+  <div class="video-banner-text">
+    <div class="video-banner-hero">
+      <span>Bring your kitchen to</span>
+      <i>life</i>
+    </div>
+    <div>Professional-grade cookware for every occasion</div>
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="video-banner-shop-btn"
+      >Shop Now</a
+    >
+  </div>
+</div>
 
 {% schema %}
 {

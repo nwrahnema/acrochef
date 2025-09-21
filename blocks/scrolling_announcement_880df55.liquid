@@ -3,7 +3,8 @@
 {% endunless %}
 
 {% style %}
-  .container {
+  .marquee-container {
+    margin-inline: auto;
     overflow: hidden;
   }
 
@@ -43,7 +44,7 @@
   }
 {% endstyle %}
 
-<div class="container">
+<div class="marquee-container">
   <div class="marquee" {{ block.shopify_attributes }}>
     <div class="marquee__inner">
       {{ block.settings.announcement_text }}
