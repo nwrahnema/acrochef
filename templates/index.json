@@ -24,7 +24,7 @@
           "settings": {
             "description": "",
             "selected_collections": [
-              "casserole-pans-new",
+              "commercial-equipment",
               "bakeware",
               "pans",
               "pots-new"
@@ -92,7 +92,7 @@
           "settings": {
             "title": "Featured products",
             "description": "<p>Shop our best-sellers</p>",
-            "collection": "casserole-pans-new",
+            "collection": "commercial-equipment",
             "products_limit": 12,
             "show_vendor": false,
             "show_add_to_cart": false,
