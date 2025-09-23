@@ -1,11 +1,12 @@
 {%- style -%}
   .video-banner-container {
     position: relative;
-    height: min(70vh, 800px);
+    height: min(85vh, 800px);
     margin-inline: auto;
     max-width: 1600px;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .video-banner {
@@ -20,7 +21,6 @@
   }
 
   .video-banner-text {
-    margin-top: min(20vh, 200px);
     z-index: 1;
     color: white;
     display: flex;
@@ -33,6 +33,11 @@
     font-size: clamp(3rem, 6vw, 6rem);
     text-align: center;
     text-transform: capitalize;
+  }
+
+  .video-banner-cta {
+    display: flex;
+    gap: 24px;
   }
 
   .video-banner-shop-btn {
@@ -59,11 +64,18 @@
       <i>life</i>
     </div>
     <div>Professional-grade cookware for every occasion</div>
-    <a
-      href="{{ routes.all_products_collection_url }}"
-      class="video-banner-shop-btn"
-      >Shop Now</a
-    >
+    <div class="video-banner-cta">
+      <a
+        href="{{ routes.collections_url }}/cookware-kitchenware-new"
+        class="video-banner-shop-btn"
+        >Shop Home</a
+      >
+      <a
+        href="{{ routes.collections_url }}/commercial-equipment-new"
+        class="video-banner-shop-btn"
+        >Shop Commercial</a
+      >
+    </div>
   </div>
 </div>
 
