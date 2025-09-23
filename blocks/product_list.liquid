@@ -8,6 +8,8 @@
   }
 
   .product-list-scroll-container-{{ product_list_id }} {
+    display: flex;
+    align-items: center;
     max-width: {{ settings.page_width }}px;
     margin: 0 auto;
     padding: 20px;
@@ -21,7 +23,9 @@
   .product-list-scroll-title-{{ product_list_id }} {
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.title_size }}px;
-    margin: 0 0 8px;font-weight: 600;
+    line-height: 42px;
+    margin: 0 0 8px;
+    font-weight: 600;
   }
 
   .product-list-scroll-description-{{ product_list_id }} {
