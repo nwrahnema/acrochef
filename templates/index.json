@@ -25,7 +25,7 @@
             "heading": "Shop by category",
             "description": "",
             "selected_collections": [
-              "commercial-equipment",
+              "commercial-equipment-new",
               "bakeware",
               "pans",
               "pots-new"
@@ -94,7 +94,7 @@
           "settings": {
             "title": "Featured products",
             "description": "<p>Shop our best-sellers</p>",
-            "collection": "commercial-equipment",
+            "collection": "commercial-equipment-new",
             "products_limit": 12,
             "show_vendor": false,
             "show_add_to_cart": false,
