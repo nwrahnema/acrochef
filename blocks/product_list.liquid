@@ -16,7 +16,7 @@
   }
 
   .product-list-scroll-header-{{ product_list_id }} {
-    margin-bottom: {{ block.settings.header_spacing }}px;
+    margin: 0 24px 42px 24px;
     text-align: {{ block.settings.text_alignment }};
   }
 
@@ -26,6 +26,7 @@
     line-height: 42px;
     margin: 0 0 8px;
     font-weight: 600;
+    word-break: keep-all;
   }
 
   .product-list-scroll-description-{{ product_list_id }} {
@@ -187,6 +188,7 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-bottom: 8rem;
   }
 
   .product-list-scroll-button-{{ product_list_id }}:hover {
