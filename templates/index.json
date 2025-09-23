@@ -27,7 +27,10 @@
               "casserole-pans-new",
               "cookware-sets-new",
               "fry-pans-new",
-              "pots-new"
+              "pots-new",
+              "pans",
+              "bakeware-new",
+              "commercial-equipment-new"
             ],
             "text_alignment": "center",
             "collection_width": 280,
