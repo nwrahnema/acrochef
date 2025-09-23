@@ -3,12 +3,14 @@
 {% style %}
   .collection-list-{{ collection_list_id }} {
     width: 100%;
-    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px 0;
     background-color: {{ block.settings.background_color }};
+    display: flex;
+    justify-content: center;
   }
 
   .collection-list-container-{{ collection_list_id }} {
-    padding: 70px 20px 60px 20px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -38,11 +40,14 @@
   }
 
   .collection-list-wrapper-{{ collection_list_id }} {
+    width: 100%;
     position: relative;
     overflow: hidden;
+    justify-content: center;
   }
 
   .collection-list-track-{{ collection_list_id }} {
+    max-width: 1540px;
     display: flex;
     gap: {{ block.settings.collection_spacing }}px;
     overflow-x: auto;
@@ -57,7 +62,7 @@
   }
 
   .collection-card-{{ collection_list_id }} {
-    flex: 0 0 {{ block.settings.collection_width }}px;
+    flex: 0 0 min(30vw, 400px);
     background-color: {{ block.settings.card_background_color }};
     overflow: hidden;
     text-decoration: none;
