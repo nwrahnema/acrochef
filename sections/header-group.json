@@ -63,6 +63,7 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
       "custom_css": [
         ".header__icon {stroke: black; stroke-width: 1.5px;}"
       ],
