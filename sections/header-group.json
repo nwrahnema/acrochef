@@ -11,58 +11,58 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "175859115918d83c07": {
+    "175859185694a1b49c": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_2468b09_N3BVwc": {
-          "type": "ai_gen_block_2468b09",
+        "ai_gen_block_74781bc_G9P9JC": {
+          "type": "ai_gen_block_74781bc",
           "settings": {
-            "position": "sticky",
-            "padding_vertical": 15,
+            "header_height": 80,
+            "logo_height": 40,
+            "category_1_label": "",
+            "category_1_collection": "",
+            "category_2_label": "",
+            "category_2_collection": "",
+            "category_3_label": "",
+            "category_3_collection": "",
+            "category_4_label": "",
+            "category_4_collection": "",
+            "category_5_label": "",
+            "category_5_collection": "",
+            "category_spacing": 20,
+            "category_font_size": 14,
+            "category_font_weight": "500",
+            "show_search": true,
+            "show_account": true,
+            "show_wishlist": false,
+            "show_cart": true,
+            "icon_size": 20,
+            "icon_spacing": 12,
             "background_color": "#ffffff",
+            "scrolled_bg_color": "#ffffff",
             "text_color": "#171171",
-            "text_hover_color": "#72513c",
+            "icon_color": "#171171",
+            "category_hover_bg": "#f5f5f5",
+            "category_hover_color": "#171171",
+            "icon_hover_bg": "#f5f5f5",
+            "icon_hover_color": "#171171",
+            "cart_badge_bg": "#171171",
+            "cart_badge_color": "#ffffff",
             "border_color": "#e5e5e5",
             "border_thickness": 1,
-            "logo": "shopify://shop_images/ACROCHEF_logo.png",
-            "logo_link": "",
-            "logo_height": 50,
-            "category_1_text": "Shop",
-            "category_1_link": "",
-            "category_2_text": "About",
-            "category_2_link": "",
-            "category_3_text": "Contact",
-            "category_3_link": "",
-            "category_4_text": "",
-            "category_4_link": "",
-            "category_spacing": 25,
-            "category_font_size": 16,
-            "category_font_weight": "400",
-            "icon_1_type": "search",
-            "icon_1_text": "",
-            "icon_1_link": "",
-            "icon_2_type": "user",
-            "icon_2_text": "",
-            "icon_2_link": "",
-            "icon_3_type": "cart",
-            "icon_3_text": "",
-            "icon_3_link": "",
-            "icon_spacing": 20,
-            "icon_size": 24,
-            "icon_font_size": 14,
-            "icon_font_weight": "400"
+            "shadow_opacity": 10,
+            "scrolled_shadow_opacity": 20
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_2468b09_N3BVwc"
+        "ai_gen_block_74781bc_G9P9JC"
       ],
       "settings": {}
     },
     "header": {
       "type": "header",
-      "disabled": true,
       "custom_css": [
         ".header__icon {stroke: black; stroke-width: 1.5px;}"
       ],
@@ -90,7 +90,7 @@
     }
   },
   "order": [
-    "175859115918d83c07",
+    "175859185694a1b49c",
     "header"
   ]
 }
