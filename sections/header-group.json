@@ -14,8 +14,8 @@
     "175859185694a1b49c": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_74781bc_G9P9JC": {
-          "type": "ai_gen_block_74781bc",
+        "header": {
+          "type": "header",
           "settings": {
             "header_height": 80,
             "logo_height": 40,
@@ -57,7 +57,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_74781bc_G9P9JC"
+        "header"
       ],
       "settings": {}
     },
