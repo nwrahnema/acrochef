@@ -24,9 +24,9 @@
           "settings": {
             "description": "",
             "selected_collections": [
-              "commercial-equipment-new",
-              "bakeware-new",
-              "pans",
+              "casserole-pans-new",
+              "cookware-sets-new",
+              "fry-pans-new",
               "pots-new"
             ],
             "text_alignment": "center",
@@ -73,7 +73,7 @@
             "background_color": "#171171",
             "text_color": "#ffffff",
             "font_size": 16,
-            "font_weight": "400",
+            "font_weight": "600",
             "padding": 4
           },
           "blocks": {}
@@ -92,7 +92,7 @@
           "settings": {
             "title": "Featured products",
             "description": "<p>Shop our best-sellers</p>",
-            "collection": "commercial-equipment-new",
+            "collection": "casserole-pans-new",
             "products_limit": 12,
             "show_vendor": false,
             "show_add_to_cart": false,
