@@ -3,7 +3,7 @@
 {% style %}
   .collection-list-{{ collection_list_id }} {
     width: 100%;
-    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px 0;
+    padding: {{ block.settings.section_padding_top }}px 3rem {{ block.settings.section_padding_bottom }}px 3rem;
     background-color: {{ block.settings.background_color }};
     display: flex;
     justify-content: center;
@@ -62,7 +62,7 @@
   }
 
   .collection-card-{{ collection_list_id }} {
-    flex: 0 0 min(30vw, 400px);
+    flex-grow: 1;
     background-color: {{ block.settings.card_background_color }};
     overflow: hidden;
     text-decoration: none;
@@ -117,42 +117,6 @@
     text-align: center;
   }
 
-  .collection-list-controls-{{ collection_list_id }} {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 30px;
-  }
-
-  .collection-list-btn-{{ collection_list_id }} {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color: {{ block.settings.button_background_color }};
-    color: {{ block.settings.button_text_color }};
-    border: 1px solid {{ block.settings.button_border_color }};
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-
-  .collection-list-btn-{{ collection_list_id }}:hover {
-    background-color: {{ block.settings.button_hover_color }};
-    transform: scale(1.1);
-  }
-
-  .collection-list-btn-{{ collection_list_id }}:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;transform: none;
-  }
-
-  .collection-list-btn-{{ collection_list_id }} svg {
-    width: 20px;
-    height: 20px;
-  }
-
   @media screen and (max-width: 749px) {
     .collection-card-{{ collection_list_id }} {
       flex: 0 0 {{ block.settings.collection_width | times: 0.8 }}px;
@@ -179,24 +143,6 @@
   <div class="collection-list-container-{{ collection_list_id }}">
     <div style="flex:1;min-width:0;">
       <div class="collection-list-wrapper-{{ collection_list_id }}" style="display: flex; align-items: center; gap: 0;">
-        {% if block.settings.show_navigation %}
-          <button
-            class="collection-list-btn-{{ collection_list_id }}"
-            data-scroll-btn="prev"
-            aria-label="Previous collections"
-            style="margin-right: 12px;"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="15,18 9,12 15,6"></polyline>
-            </svg>
-          </button>
-        {% endif %}
         <div class="collection-list-track-{{ collection_list_id }}" data-scroll-track style="flex:1; min-width:0;">
           {% if block.settings.selected_collections != blank %}
             {% for collection in block.settings.selected_collections %}
@@ -237,24 +183,6 @@
             {% endfor %}
           {% endif %}
         </div>
-        {% if block.settings.show_navigation %}
-          <button
-            class="collection-list-btn-{{ collection_list_id }}"
-            data-scroll-btn="next"
-            aria-label="Next collections"
-            style="margin-left: 12px;"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="9,18 15,12 9,6"></polyline>
-            </svg>
-          </button>
-        {% endif %}
       </div>
     </div>
     <!-- close flex:1 child -->
@@ -390,12 +318,6 @@
       "unit": "px",
       "label": "Image height",
       "default": 200
-    },
-    {
-      "type": "checkbox",
-      "id": "show_navigation",
-      "label": "Show navigation arrows",
-      "default": true
     },
     {
       "type": "header",
