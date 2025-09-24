@@ -99,7 +99,7 @@
             "show_vendor": false,
             "show_add_to_cart": false,
             "button_text": "View product",
-            "text_alignment": "right",
+            "text_alignment": "center",
             "card_width": 280,
             "product_spacing": 20,
             "image_aspect_ratio": "1/1",
