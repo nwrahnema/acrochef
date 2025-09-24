@@ -25,6 +25,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .footer-image {
+    content: '';
+    position: absolute;
+    background-image: url({{ section.settings.logo | image_url: width: 400 }});
+  }
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
@@ -319,6 +325,13 @@
       </div>
     </div>
   </div>
+  <img
+    src="{{ section.settings.logo | image_url: width: 400 }}"
+    alt="{{ shop.name | escape }}"
+    width="100%"
+    height="100%"
+    loading="lazy"
+  >
 </footer>
 
 {% schema %}
@@ -529,6 +542,15 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
     }
   ],
   "default": {
