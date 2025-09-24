@@ -14,15 +14,16 @@
     "175859185694a1b49c": {
       "type": "_blocks",
       "blocks": {
-        "header": {
+        "header_PiAxkk": {
           "type": "header",
+          "name": "Sticky header",
           "settings": {
             "header_height": 80,
             "logo_height": 40,
             "category_1_label": "",
             "category_1_collection": "cookware-kitchenware-new",
             "category_2_label": "",
-            "category_2_collection": "commercial-equipment-new",
+            "category_2_collection": "food-equipment-new",
             "category_3_label": "",
             "category_3_collection": "",
             "category_4_label": "",
@@ -30,8 +31,8 @@
             "category_5_label": "",
             "category_5_collection": "",
             "category_spacing": 20,
-            "category_font_size": 14,
-            "category_font_weight": "500",
+            "category_font_size": 15,
+            "category_font_weight": "600",
             "show_search": true,
             "show_account": true,
             "show_wishlist": false,
@@ -57,7 +58,7 @@
         }
       },
       "block_order": [
-        "header"
+        "header_PiAxkk"
       ],
       "settings": {}
     },
