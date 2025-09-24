@@ -26,10 +26,9 @@
     }
   }
 
-  .footer-image {
-    content: '';
-    position: absolute;
-    background-image: url({{ section.settings.logo | image_url: width: 400 }});
+  .footer__logo {
+    filter: invert();
+    transform: translateX(-3%);
   }
 {%- endstyle -%}
 
@@ -303,6 +302,16 @@
         {%- endif -%}
       </div>
     </div>
+    <div class="page-width">
+      <img
+        class="footer__logo"
+        src="{{ section.settings.logo | image_url: width: 400 }}"
+        alt="{{ shop.name | escape }}"
+        width="400px"
+        height="100%"
+        loading="lazy"
+      >
+    </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
         <small class="copyright__content"
@@ -325,13 +334,6 @@
       </div>
     </div>
   </div>
-  <img
-    src="{{ section.settings.logo | image_url: width: 400 }}"
-    alt="{{ shop.name | escape }}"
-    width="100%"
-    height="100%"
-    loading="lazy"
-  >
 </footer>
 
 {% schema %}
