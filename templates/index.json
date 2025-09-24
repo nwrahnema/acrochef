@@ -24,13 +24,10 @@
           "settings": {
             "description": "",
             "selected_collections": [
-              "casserole-pans-new",
-              "cookware-sets-new",
-              "fry-pans-new",
               "pots-new",
               "pans",
               "bakeware-new",
-              "commercial-equipment-new"
+              "food-equipment-new"
             ],
             "text_alignment": "center",
             "collection_width": 280,
