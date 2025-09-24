@@ -33,6 +33,7 @@
     display: flex;
     align-items: center;
     gap: {{ block.settings.category_spacing }}px;
+    text-wrap: nowrap;
   }
 
   .sticky-header-category-{{ sticky_header_id }} {
@@ -140,7 +141,7 @@
     display: none;
   }
 
-  @media screen and (max-width: 990px) {
+  @media screen and (max-width: 1050px) {
     .sticky-header-categories-{{ sticky_header_id }} {
       display: none;
     }
@@ -183,6 +184,10 @@
       <button
         class="sticky-header-icon-{{ sticky_header_id }} sticky-header-mobile-menu-{{ sticky_header_id }}"
         aria-label="Open menu"
+        id="sticky-header-mobile-menu-btn-{{ sticky_header_id }}"
+        type="button"
+        aria-expanded="false"
+        aria-controls="sticky-header-mobile-dropdown-{{ sticky_header_id }}"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -200,6 +205,38 @@
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
+      <div
+        id="sticky-header-mobile-dropdown-{{ sticky_header_id }}"
+        class="sticky-header-mobile-dropdown-{{ sticky_header_id }}"
+        style="display:none;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.08);z-index:1001;"
+      >
+        <ul style="list-style:none;margin:0;padding:0;">
+          {% for i in (1..5) %}
+            {% liquid
+              assign collection_key = 'category_' | append: i | append: '_collection'
+              assign label_key = 'category_' | append: i | append: '_label'
+              assign collection = block.settings[collection_key]
+              assign label = block.settings[label_key]
+            %}
+            {% if collection != blank or label != blank %}
+              <li>
+                <a
+                  href="{% if collection != blank %}{{ collection.url }}{% else %}#{% endif %}"
+                  style="display:block;padding:12px 20px;color:#222;text-decoration:none;"
+                >
+                  {% if label != blank %}
+                    {{ label }}
+                  {% elsif collection != blank %}
+                    {{ collection.title }}
+                  {% else %}
+                    Category {{ i }}
+                  {% endif %}
+                </a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
 
       <nav class="sticky-header-categories-{{ sticky_header_id }}">
         {% for i in (1..5) %}
@@ -338,6 +375,85 @@
     </div>
   </div>
 </sticky-header-{{ sticky_header_id }}>
+
+<script>
+  (function () {
+
+    class StickyHeader{{ sticky_header_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.header = this;
+        this.scrollThreshold = 100;
+        this.isScrolled = false;
+      }
+
+      connectedCallback() {
+        this.setupScrollListener();
+        this.addBodyPadding();
+      }
+
+      disconnectedCallback() {
+        this.removeScrollListener();
+        this.removeBodyPadding();
+      }
+
+      setupScrollListener() {
+        this.handleScroll = this.handleScroll.bind(this);
+        window.addEventListener('scroll', this.handleScroll, { passive: true });
+        this.handleScroll();
+      }
+
+      removeScrollListener() {
+        window.removeEventListener('scroll', this.handleScroll);
+      }
+
+      handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const shouldBeScrolled = scrollTop > this.scrollThreshold;
+
+        if (shouldBeScrolled !== this.isScrolled) {
+          this.isScrolled = shouldBeScrolled;
+
+          if (this.isScrolled) {
+            this.header.style.backgroundColor = '{{ block.settings.scrolled_bg_color }}';
+            this.header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, {{ block.settings.scrolled_shadow_opacity | divided_by: 100.0 }})';
+          } else {
+            this.header.style.backgroundColor = '{{ block.settings.background_color }}';
+            this.header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, {{ block.settings.shadow_opacity | divided_by: 100.0 }})';
+          }
+        }
+      }
+
+      addBodyPadding() {
+        const headerHeight = this.header.offsetHeight;
+        document.body.style.paddingTop = headerHeight + 'px';
+      }
+
+      removeBodyPadding() {
+        document.body.style.paddingTop = '';
+      }
+    }
+
+    customElements.define('sticky-header-{{ sticky_header_id }}', StickyHeader{{ sticky_header_id }});
+
+    var btn = document.getElementById('sticky-header-mobile-menu-btn-{{ sticky_header_id }}');
+    var dropdown = document.getElementById('sticky-header-mobile-dropdown-{{ sticky_header_id }}');
+    if (btn && dropdown) {
+      btn.addEventListener('click', function (e) {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', !expanded);
+        dropdown.style.display = expanded ? 'none' : 'block';
+      });
+      // Optional: Hide dropdown when clicking outside
+      document.addEventListener('click', function (e) {
+        if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+          dropdown.style.display = 'none';
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  })();
+</script>
 
 {% schema %}
 {
