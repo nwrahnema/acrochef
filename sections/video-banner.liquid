@@ -9,6 +9,10 @@
     align-items: center;
   }
 
+  .video-banner-container-container {
+    margin: 0 2rem;
+  }
+
   .video-banner {
     display: block;
     width: 100%;
@@ -40,28 +44,30 @@
   }
 {%- endstyle -%}
 
-<div class="video-banner-container">
-  {{
-    section.settings.video
-    | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
-  }}
-  <div class="video-banner-text">
-    <div class="video-banner-hero">
-      <span>Bring your kitchen to</span>
-      <i>life</i>
-    </div>
-    <div>Professional-grade cookware for every occasion</div>
-    <div class="video-banner-cta">
-      <a
-        href="{{ routes.collections_url }}/cookware-kitchenware-new"
-        class="shop-button"
-        >Shop Cookware</a
-      >
-      <a
-        href="{{ routes.collections_url }}/commercial-equipment-new"
-        class="shop-button"
-        >Shop Food Equipment</a
-      >
+<div class="video-banner-container-container">
+  <div class="video-banner-container">
+    {{
+      section.settings.video
+      | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
+    }}
+    <div class="video-banner-text">
+      <div class="video-banner-hero">
+        <span>Bring your kitchen to</span>
+        <i>life</i>
+      </div>
+      <div>Professional-grade cookware for every occasion</div>
+      <div class="video-banner-cta">
+        <a
+          href="{{ routes.collections_url }}/cookware-kitchenware-new"
+          class="shop-button"
+          >Shop Cookware</a
+        >
+        <a
+          href="{{ routes.collections_url }}/commercial-equipment-new"
+          class="shop-button"
+          >Shop Food Equipment</a
+        >
+      </div>
     </div>
   </div>
 </div>
