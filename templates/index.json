@@ -30,7 +30,7 @@
               "pots-new",
               "pans",
               "bakeware-new",
-              "food-equipment-new"
+              "commercial-equipment-new"
             ],
             "text_alignment": "center",
             "collection_width": 280,
@@ -92,7 +92,7 @@
         "product_list_RinR6F": {
           "type": "product_list",
           "settings": {
-            "title": "Our Favourites",
+            "title": "Featured Products",
             "description": "<p>Shop our best-sellers</p>",
             "collection": "casserole-pans-new",
             "products_limit": 12,
