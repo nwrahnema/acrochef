@@ -156,6 +156,10 @@
   font-weight: 600;
 }
 
+.footer__list-social {
+  margin-top: 2rem;
+}
+
 .footer__list-social:empty,
 .footer-block--newsletter:empty {
   display: none;
