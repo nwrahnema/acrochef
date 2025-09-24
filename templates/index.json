@@ -93,7 +93,7 @@
           "type": "product_list",
           "settings": {
             "title": "Featured Products",
-            "description": "<p>Shop our best-sellers</p>",
+            "description": "",
             "collection": "casserole-pans-new",
             "products_limit": 12,
             "show_vendor": false,
