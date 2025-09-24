@@ -20,10 +20,17 @@
             "heading": "Contact us",
             "menu": "contact-us"
           }
+        },
+        "brand_information_K3KTLY": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": true
+          }
         }
       },
       "block_order": [
-        "link_list_bgRpMb"
+        "link_list_bgRpMb",
+        "brand_information_K3KTLY"
       ],
       "custom_css": [],
       "settings": {
