@@ -9,45 +9,6 @@
  */
 {
   "sections": {
-    "1758763279cc63d7d2": {
-      "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_135ead9_bMAT76": {
-          "type": "ai_gen_block_135ead9",
-          "settings": {
-            "title": "Premium cookware for the everyday chef",
-            "subtitle": "Discover our collection of professional-grade cookware designed to elevate your culinary experience. From non-stick pans to durable cast iron, we have everything you need.",
-            "button_text": "Shop Now",
-            "button_link": "shopify://collections/cookware-kitchenware-new",
-            "layout": "image_left",
-            "image": "shopify://shop_images/Fry_Pans_1c0097be-c08d-4ac1-8442-52b12fb1bd3a.jpg",
-            "section_height": 600,
-            "image_height": 400,
-            "image_border_radius": 20,
-            "background_color": "#ffffff",
-            "text_background_color": "#171171",
-            "accent_color": "#72513c",
-            "title_color": "#ffffff",
-            "subtitle_color": "#ffffff",
-            "button_color": "#f17e60",
-            "button_text_color": "#ffffff",
-            "button_hover_color": "#f17e60",
-            "button_hover_text_color": "#ffffff",
-            "title_font": "libre_baskerville_n4",
-            "title_size": 36,
-            "subtitle_size": 18,
-            "border_radius": 0,
-            "text_border_radius": 20,
-            "button_border_radius": 40
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_135ead9_bMAT76"
-      ],
-      "settings": {}
-    },
     "video_banner_cRhGBL": {
       "type": "video-banner",
       "name": "t:sections.video-banner.presets.name",
@@ -171,13 +132,52 @@
         "product_list_RinR6F"
       ],
       "settings": {}
+    },
+    "1758763279cc63d7d2": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_135ead9_bMAT76": {
+          "type": "ai_gen_block_135ead9",
+          "settings": {
+            "title": "Premium cookware for the everyday chef",
+            "subtitle": "Discover our collection of professional-grade cookware designed to elevate your culinary experience. From non-stick pans to durable cast iron, we have everything you need.",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/cookware-kitchenware-new",
+            "layout": "image_left",
+            "image": "shopify://shop_images/Fry_Pans_1c0097be-c08d-4ac1-8442-52b12fb1bd3a.jpg",
+            "section_height": 600,
+            "image_height": 400,
+            "image_border_radius": 20,
+            "background_color": "#ffffff",
+            "text_background_color": "#171171",
+            "accent_color": "#72513c",
+            "title_color": "#ffffff",
+            "subtitle_color": "#ffffff",
+            "button_color": "#f17e60",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#f17e60",
+            "button_hover_text_color": "#ffffff",
+            "title_font": "libre_baskerville_n4",
+            "title_size": 36,
+            "subtitle_size": 18,
+            "border_radius": 0,
+            "text_border_radius": 20,
+            "button_border_radius": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_135ead9_bMAT76"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "1758763279cc63d7d2",
     "video_banner_cRhGBL",
     "1754881105207597a6",
     "1754619754012c3614",
-    "17548804239d0657b2"
+    "17548804239d0657b2",
+    "1758763279cc63d7d2"
   ]
 }
