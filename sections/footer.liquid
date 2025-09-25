@@ -30,6 +30,13 @@
     filter: invert();
     transform: translateX(-3%);
   }
+
+  @media screen and (max-width: 749px) {
+    .footer__logo-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+  }
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
@@ -302,7 +309,7 @@
         {%- endif -%}
       </div>
     </div>
-    <div class="page-width">
+    <div class="footer__logo-wrapper page-width">
       <img
         class="footer__logo"
         src="{{ section.settings.logo | image_url: width: 300 }}"

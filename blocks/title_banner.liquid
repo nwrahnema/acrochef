@@ -197,22 +197,15 @@
 
   @media screen and (max-width: 990px) {
     .title-banner-content-{{ title_banner_id }} {
-      grid-template-columns: 1fr;
+      grid-template:
+        'image' auto
+        'text' auto;
       gap: 40px;
       text-align: center;
     }
 
-    .title-banner-text-{{ title_banner_id }},
-    .title-banner-image-{{ title_banner_id }} {
-      order: unset !important;
-    }
-
-    .title-banner-image-{{ title_banner_id }} {
-      order: 1;
-    }
-
     .title-banner-text-{{ title_banner_id }} {
-      order: 2;
+      align-items: center;
     }
 
     .title-banner-title-{{ title_banner_id }} {
@@ -220,7 +213,7 @@
     }
 
     .title-banner-image-wrapper-{{ title_banner_id }} {
-      height: {{ block.settings.image_height | times: 0.8 }}px;
+      height: 200px;
     }
   }
 
@@ -243,10 +236,6 @@
 
     .title-banner-subtitle-{{ title_banner_id }} {
       font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
-    }
-
-    .title-banner-image-wrapper-{{ title_banner_id }} {
-      height: {{ block.settings.image_height | times: 0.6 }}px;
     }
 
     .title-banner-cta-{{ title_banner_id }} {

@@ -38,7 +38,7 @@
 
   .product-list-scroll-wrapper-{{ product_list_id }} {
     position: relative;
-    overflow: hidden;
+    width: 100%;
   }
 
   .product-list-scroll-track-{{ product_list_id }} {
@@ -205,11 +205,24 @@
     }
 
     .product-list-scroll-container-{{ product_list_id }} {
-      padding: 0 16px;
+      flex-direction: column;
     }
 
     .product-list-scroll-title-{{ product_list_id }} {
       font-size: {{ block.settings.title_size | times: 0.9 }}px;
+      text-wrap: nowrap;
+    }
+
+    .product-list-scroll-header-{{ product_list_id }} {
+      margin: 0;
+    }
+
+    .product-list-scroll-header-{{ product_list_id }} .shop-button {
+      margin: 0;
+    }
+
+    .product-list-scroll-track-{{ product_list_id }} {
+      margin-top: 12px;
     }
   }
 {% endstyle %}
@@ -230,7 +243,7 @@
         <a
           href="{{ routes.collections_url }}/cookware-kitchenware-new"
           class="shop-button"
-          >Shop Now</a
+          >Shop All</a
         >
       </div>
     {% endif %}

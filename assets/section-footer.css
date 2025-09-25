@@ -137,8 +137,8 @@
 }
 
 @media screen and (max-width: 749px) {
-  .footer-block.footer-block--menu:only-child {
-    text-align: left;
+  .footer-block.footer-block--menu {
+    text-align: center;
   }
 }
 
@@ -420,6 +420,12 @@
   text-align: right;
 }
 
+@media screen and (max-width: 749px) {
+  .footer-block__brand-info {
+    text-align: center;
+  }
+}
+
 .footer-block:only-child .footer-block__brand-info {
   text-align: center;
 }
@@ -440,6 +446,12 @@
 
 .footer-block__brand-info .footer__list-social.list-social {
   justify-content: flex-end;
+}
+
+@media screen and (max-width: 749px) {
+  .footer-block__brand-info .footer__list-social.list-social {
+    justify-content: center;
+  }
 }
 
 .footer-block__details-content .placeholder-svg {

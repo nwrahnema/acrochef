@@ -119,20 +119,38 @@
   }
 
   @media screen and (max-width: 749px) {
+    .collection-list-{{collection_list_id}} {
+      padding: {{ block.settings.section_padding_top | times: 0.2 }}px 1rem {{ block.settings.section_padding_bottom | times: 0.2 }}px 1rem;
+    }
+
+    .collection-title-{{ collection_list_id }} {
+      font-size: {{ block.settings.collection_title_size | times: 0.8 }}px;
+    }
+
     .collection-card-{{ collection_list_id }} {
       flex: 0 0 {{ block.settings.collection_width | times: 0.8 }}px;
     }
 
     .collection-list-container-{{ collection_list_id }} {
-      padding: 0 16px;
+      padding: 0;
     }
 
     .collection-list-header-{{ collection_list_id }} {
       margin-bottom: 24px;
     }
 
+    .collection-image-wrapper-{{ collection_list_id }} {
+      height: {{ block.settings.image_height | times: 0.6 }}px;
+    }
+
     .collection-content-{{ collection_list_id }} {
       padding: {{ block.settings.card_padding | times: 0.8 }}px;
+    }
+
+    .collection-list-track-{{ collection_list_id }} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
     }
   }
 {% endstyle %}
