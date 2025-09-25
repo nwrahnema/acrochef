@@ -136,8 +136,8 @@
     "1758763279cc63d7d2": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_135ead9_bMAT76": {
-          "type": "ai_gen_block_135ead9",
+        "title_banner": {
+          "type": "title_banner",
           "settings": {
             "title": "Premium cookware for the everyday chef",
             "subtitle": "Discover our collection of professional-grade cookware designed to elevate your culinary experience. From non-stick pans to durable cast iron, we have everything you need.",
@@ -168,7 +168,7 @@
         }
       },
       "block_order": [
-        "ai_gen_block_135ead9_bMAT76"
+        "title_banner"
       ],
       "settings": {}
     }

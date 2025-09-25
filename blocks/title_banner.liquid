@@ -1,11 +1,7 @@
-{% doc %}
-  @prompt
-    Create a unique and creative section with placeholders inteded the copy "Premium cookware for the everyday chef", CTA saying "Shop Now", and an image banner., Remove the badge, invert the colors on the title, subtitle, and button by giving it a background color, Make the side that the text and image appear on configurable, and make the button smaller in width.
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{% assign title_banner_id = block.id | replace: '_', '' | downcase %}
 
 {% style %}
-  .ai-premium-banner-{{ ai_gen_id }} {
+  .title-banner-{{ title_banner_id }} {
     position: relative;
     overflow: hidden;
     background: {{ block.settings.background_color }};
@@ -15,7 +11,7 @@
     border-radius: {{ block.settings.border_radius }}px;
   }
 
-  .ai-premium-banner-container-{{ ai_gen_id }} {
+  .title-banner-container-{{ title_banner_id }} {
     position: relative;
     width: 100%;
     max-width: 1600px;
@@ -24,13 +20,13 @@
     z-index: 2;
   }
 
-  .ai-premium-banner-content-{{ ai_gen_id }} {
+  .title-banner-content-{{ title_banner_id }} {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
   }
 
-  .ai-premium-banner-text-{{ ai_gen_id }} {
+  .title-banner-text-{{ title_banner_id }} {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -42,14 +38,14 @@
     {% endif %}
   }
 
-  .ai-premium-banner-image-{{ ai_gen_id }} {
+  .title-banner-image-{{ title_banner_id }} {
     position: relative;
     {% if block.settings.layout == 'image_left' %}
       order: 1;
     {% endif %}
   }
 
-  .ai-premium-banner-image-wrapper-{{ ai_gen_id }} {
+  .title-banner-image-wrapper-{{ title_banner_id }} {
     position: relative;
     width: 100%;
     height: 100%;
@@ -58,13 +54,13 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 
-  .ai-premium-banner-image-wrapper-{{ ai_gen_id }} img {
+  .title-banner-image-wrapper-{{ title_banner_id }} img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  .ai-premium-banner-image-placeholder-{{ ai_gen_id }} {
+  .title-banner-image-placeholder-{{ title_banner_id }} {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -74,13 +70,13 @@
     position: relative;
   }
 
-  .ai-premium-banner-image-placeholder-{{ ai_gen_id }} svg {
+  .title-banner-image-placeholder-{{ title_banner_id }} svg {
     width: 60%;
     height: 60%;
     opacity: 0.3;
   }
 
-  .ai-premium-banner-empty-state-{{ ai_gen_id }} {
+  .title-banner-empty-state-{{ title_banner_id }} {
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -94,7 +90,7 @@
     backdrop-filter: blur(10px);
   }
 
-  .ai-premium-banner-title-{{ ai_gen_id }} {
+  .title-banner-title-{{ title_banner_id }} {
     font-size: {{ block.settings.title_size }}px;
     font-weight: 700;
     color: {{ block.settings.title_color }};
@@ -105,7 +101,7 @@
     font-style: {{ block.settings.title_font.style }};
   }
 
-  .ai-premium-banner-subtitle-{{ ai_gen_id }} {
+  .title-banner-subtitle-{{ title_banner_id }} {
     font-size: {{ block.settings.subtitle_size }}px;
     color: {{ block.settings.subtitle_color }};
     line-height: 1.6;
@@ -113,7 +109,7 @@
     opacity: 0.9;
   }
 
-  .ai-premium-banner-cta-{{ ai_gen_id }} {
+  .title-banner-cta-{{ title_banner_id }} {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -131,14 +127,14 @@
     width: fit-content;
   }
 
-  .ai-premium-banner-cta-{{ ai_gen_id }}:hover {
+  .title-banner-cta-{{ title_banner_id }}:hover {
     background: {{ block.settings.button_hover_color }};
     color: {{ block.settings.button_hover_text_color }};
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
-  .ai-premium-banner-cta-{{ ai_gen_id }}::before {
+  .title-banner-cta-{{ title_banner_id }}::before {
     content: '';
     position: absolute;
     top: 0;
@@ -149,21 +145,21 @@
     transition: left 0.5s ease;
   }
 
-  .ai-premium-banner-cta-{{ ai_gen_id }}:hover::before {
+  .title-banner-cta-{{ title_banner_id }}:hover::before {
     left: 100%;
   }
 
-  .ai-premium-banner-cta-icon-{{ ai_gen_id }} {
+  .title-banner-cta-icon-{{ title_banner_id }} {
     width: 16px;
     height: 16px;
     transition: transform 0.3s ease;
   }
 
-  .ai-premium-banner-cta-{{ ai_gen_id }}:hover .ai-premium-banner-cta-icon-{{ ai_gen_id }} {
+  .title-banner-cta-{{ title_banner_id }}:hover .title-banner-cta-icon-{{ title_banner_id }} {
     transform: translateX(4px);
   }
 
-  .ai-premium-banner-decorative-{{ ai_gen_id }} {
+  .title-banner-decorative-{{ title_banner_id }} {
     position: absolute;
     top: 0;
     left: 0;
@@ -173,28 +169,28 @@
     z-index: 1;
   }
 
-  .ai-premium-banner-circle-{{ ai_gen_id }} {
+  .title-banner-circle-{{ title_banner_id }} {
     position: absolute;
     border-radius: 50%;
     background: {{ block.settings.accent_color }};
     opacity: 0.1;
   }
 
-  .ai-premium-banner-circle-1-{{ ai_gen_id }} {
+  .title-banner-circle-1-{{ title_banner_id }} {
     width: 200px;
     height: 200px;
     top: -100px;
     right: -100px;
   }
 
-  .ai-premium-banner-circle-2-{{ ai_gen_id }} {
+  .title-banner-circle-2-{{ title_banner_id }} {
     width: 150px;
     height: 150px;
     bottom: -75px;
     left: -75px;
   }
 
-  .ai-premium-banner-circle-3-{{ ai_gen_id }} {
+  .title-banner-circle-3-{{ title_banner_id }} {
     width: 100px;
     height: 100px;
     top: 50%;
@@ -203,89 +199,89 @@
   }
 
   @media screen and (max-width: 990px) {
-    .ai-premium-banner-content-{{ ai_gen_id }} {
+    .title-banner-content-{{ title_banner_id }} {
       grid-template-columns: 1fr;
       gap: 40px;
       text-align: center;
     }
 
-    .ai-premium-banner-text-{{ ai_gen_id }},
-    .ai-premium-banner-image-{{ ai_gen_id }} {
+    .title-banner-text-{{ title_banner_id }},
+    .title-banner-image-{{ title_banner_id }} {
       order: unset !important;
     }
 
-    .ai-premium-banner-image-{{ ai_gen_id }} {
+    .title-banner-image-{{ title_banner_id }} {
       order: 1;
     }
 
-    .ai-premium-banner-text-{{ ai_gen_id }} {
+    .title-banner-text-{{ title_banner_id }} {
       order: 2;
     }
 
-    .ai-premium-banner-title-{{ ai_gen_id }} {
+    .title-banner-title-{{ title_banner_id }} {
       font-size: {{ block.settings.title_size | times: 0.8 }}px;
     }
 
-    .ai-premium-banner-image-wrapper-{{ ai_gen_id }} {
+    .title-banner-image-wrapper-{{ title_banner_id }} {
       height: {{ block.settings.image_height | times: 0.8 }}px;
     }
   }
 
   @media screen and (max-width: 749px) {
-    .ai-premium-banner-container-{{ ai_gen_id }} {
+    .title-banner-container-{{ title_banner_id }} {
       padding: 0 16px;
     }
 
-    .ai-premium-banner-content-{{ ai_gen_id }} {
+    .title-banner-content-{{ title_banner_id }} {
       gap: 30px;
     }
 
-    .ai-premium-banner-text-{{ ai_gen_id }} {
+    .title-banner-text-{{ title_banner_id }} {
       padding: 30px 20px;
     }
 
-    .ai-premium-banner-title-{{ ai_gen_id }} {
+    .title-banner-title-{{ title_banner_id }} {
       font-size: {{ block.settings.title_size | times: 0.7 }}px;
     }
 
-    .ai-premium-banner-subtitle-{{ ai_gen_id }} {
+    .title-banner-subtitle-{{ title_banner_id }} {
       font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
     }
 
-    .ai-premium-banner-image-wrapper-{{ ai_gen_id }} {
+    .title-banner-image-wrapper-{{ title_banner_id }} {
       height: {{ block.settings.image_height | times: 0.6 }}px;
     }
 
-    .ai-premium-banner-cta-{{ ai_gen_id }} {
+    .title-banner-cta-{{ title_banner_id }} {
       padding: 10px 16px;
       font-size: 13px;
     }
   }
 {% endstyle %}
 
-<div class="ai-premium-banner-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <div class="ai-premium-banner-decorative-{{ ai_gen_id }}">
-    <div class="ai-premium-banner-circle-{{ ai_gen_id }} ai-premium-banner-circle-1-{{ ai_gen_id }}"></div>
-    <div class="ai-premium-banner-circle-{{ ai_gen_id }} ai-premium-banner-circle-2-{{ ai_gen_id }}"></div>
-    <div class="ai-premium-banner-circle-{{ ai_gen_id }} ai-premium-banner-circle-3-{{ ai_gen_id }}"></div>
+<div class="title-banner-{{ title_banner_id }}" {{ block.shopify_attributes }}>
+  <div class="title-banner-decorative-{{ title_banner_id }}">
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-1-{{ title_banner_id }}"></div>
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-2-{{ title_banner_id }}"></div>
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-3-{{ title_banner_id }}"></div>
   </div>
 
-  <div class="ai-premium-banner-container-{{ ai_gen_id }}">
-    <div class="ai-premium-banner-content-{{ ai_gen_id }}">
-      <div class="ai-premium-banner-text-{{ ai_gen_id }}">
+  <div class="title-banner-container-{{ title_banner_id }}">
+    <div class="title-banner-content-{{ title_banner_id }}">
+      <div class="title-banner-text-{{ title_banner_id }}">
         {% if block.settings.title != blank %}
-          <h2 class="ai-premium-banner-title-{{ ai_gen_id }}">{{ block.settings.title }}</h2>
+          <h2 class="title-banner-title-{{ title_banner_id }}">{{ block.settings.title }}</h2>
         {% endif %}
 
         {% if block.settings.subtitle != blank %}
-          <p class="ai-premium-banner-subtitle-{{ ai_gen_id }}">{{ block.settings.subtitle }}</p>
+          <p class="title-banner-subtitle-{{ title_banner_id }}">{{ block.settings.subtitle }}</p>
         {% endif %}
 
         {% if block.settings.button_text != blank %}
-          <a href="{{ block.settings.button_link }}" class="ai-premium-banner-cta-{{ ai_gen_id }}">
+          <a href="{{ block.settings.button_link }}" class="title-banner-cta-{{ title_banner_id }}">
             {{ block.settings.button_text }}
             <svg
-              class="ai-premium-banner-cta-icon-{{ ai_gen_id }}"
+              class="title-banner-cta-icon-{{ title_banner_id }}"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -300,8 +296,8 @@
         {% endif %}
       </div>
 
-      <div class="ai-premium-banner-image-{{ ai_gen_id }}">
-        <div class="ai-premium-banner-image-wrapper-{{ ai_gen_id }}">
+      <div class="title-banner-image-{{ title_banner_id }}">
+        <div class="title-banner-image-wrapper-{{ title_banner_id }}">
           {% if block.settings.image %}
             <img
               src="{{ block.settings.image | image_url: width: 800 }}"
@@ -311,9 +307,9 @@
               height="{{ block.settings.image.height }}"
             >
           {% else %}
-            <div class="ai-premium-banner-image-placeholder-{{ ai_gen_id }}">
+            <div class="title-banner-image-placeholder-{{ title_banner_id }}">
               {{ 'hero-apparel-1' | placeholder_svg_tag }}
-              <div class="ai-premium-banner-empty-state-{{ ai_gen_id }}">Add your banner image</div>
+              <div class="title-banner-empty-state-{{ title_banner_id }}">Add your banner image</div>
             </div>
           {% endif %}
         </div>
