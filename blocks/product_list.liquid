@@ -404,14 +404,14 @@
       setupScrollControls() {
         this.prevButton.addEventListener('click', () => {
           this.scrollTrack.scrollBy({
-            left: -{{ block.settings.card_width | plus: block.settings.product_spacing }},
+            left: -{{ block.settings.card_width | plus: block.settings.product_spacing | times : 2}},
             behavior: 'smooth'
           });
         });
 
         this.nextButton.addEventListener('click', () => {
           this.scrollTrack.scrollBy({
-            left: {{ block.settings.card_width | plus: block.settings.product_spacing }},
+            left: {{ block.settings.card_width | plus: block.settings.product_spacing | times : 2 }},
             behavior: 'smooth'
           });
         });
