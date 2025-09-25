@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     border-radius: {{ block.settings.border_radius }}px;
+    margin: 40px 0;
   }
 
   .title-banner-container-{{ title_banner_id }} {
@@ -22,7 +23,11 @@
 
   .title-banner-content-{{ title_banner_id }} {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    {% if block.settings.layout == 'image_left' %}
+      grid-template: 'image text' / 2fr 1fr;
+    {% else %}
+      grid-template: 'text image' / 1fr 2fr;
+    {% endif %}
     gap: 60px;
   }
 
@@ -33,31 +38,23 @@
     background: {{ block.settings.text_background_color }};
     padding: 40px;
     border-radius: {{ block.settings.text_border_radius }}px;
-    {% if block.settings.layout == 'image_left' %}
-      order: 2;
-    {% endif %}
+    grid-area: text;
   }
 
   .title-banner-image-{{ title_banner_id }} {
     position: relative;
-    {% if block.settings.layout == 'image_left' %}
-      order: 1;
-    {% endif %}
+    grid-area: image;
   }
 
   .title-banner-image-wrapper-{{ title_banner_id }} {
-    position: relative;
+    background-image: url({{ block.settings.image | image_url: width: 800 }});
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
     height: 100%;
     border-radius: {{ block.settings.image_border_radius }}px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  }
-
-  .title-banner-image-wrapper-{{ title_banner_id }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
   .title-banner-image-placeholder-{{ title_banner_id }} {
@@ -119,7 +116,7 @@
     border-radius: {{ block.settings.button_border_radius }}px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 20px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -254,7 +251,7 @@
 
     .title-banner-cta-{{ title_banner_id }} {
       padding: 10px 16px;
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 {% endstyle %}
@@ -297,22 +294,7 @@
       </div>
 
       <div class="title-banner-image-{{ title_banner_id }}">
-        <div class="title-banner-image-wrapper-{{ title_banner_id }}">
-          {% if block.settings.image %}
-            <img
-              src="{{ block.settings.image | image_url: width: 800 }}"
-              alt="{{ block.settings.image.alt | escape }}"
-              loading="lazy"
-              width="{{ block.settings.image.width }}"
-              height="{{ block.settings.image.height }}"
-            >
-          {% else %}
-            <div class="title-banner-image-placeholder-{{ title_banner_id }}">
-              {{ 'hero-apparel-1' | placeholder_svg_tag }}
-              <div class="title-banner-empty-state-{{ title_banner_id }}">Add your banner image</div>
-            </div>
-          {% endif %}
-        </div>
+        <div class="title-banner-image-wrapper-{{ title_banner_id }}" />
       </div>
     </div>
   </div>

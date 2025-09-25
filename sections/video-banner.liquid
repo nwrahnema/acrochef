@@ -30,10 +30,13 @@
     align-items: center;
     flex-direction: column;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .video-banner-hero {
-    font-size: clamp(3rem, 6vw, 6rem);
+    font-size: clamp(2rem, 6vw, 6rem);
     text-align: center;
     text-transform: capitalize;
   }
@@ -43,6 +46,32 @@
     width: 100%;
     justify-content: center;
     gap: 24px;
+  }
+
+  @media (max-width: 749px) {
+    .video-banner-container-container {
+      margin: 0 0.5rem;
+    }
+    .video-banner-container {
+      height: 320px;
+      min-height: 220px;
+    }
+    .video-banner-text {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .video-banner-hero {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+    .video-banner-cta {
+      gap: 10px;
+      margin-top: 1rem;
+    }
+    .shop-button {
+      font-size: 0.95rem;
+      padding: 0.6rem 1.1rem;
+      min-width: 120px;
+    }
   }
 {%- endstyle -%}
 
