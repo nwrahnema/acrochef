@@ -28,8 +28,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
-    align-items: center;
-    min-height: {{ block.settings.section_height }}px;
   }
 
   .ai-premium-banner-text-{{ ai_gen_id }} {
@@ -54,7 +52,7 @@
   .ai-premium-banner-image-wrapper-{{ ai_gen_id }} {
     position: relative;
     width: 100%;
-    height: {{ block.settings.image_height }}px;
+    height: 100%;
     border-radius: {{ block.settings.image_border_radius }}px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -286,7 +284,15 @@
         {% if block.settings.button_text != blank %}
           <a href="{{ block.settings.button_link }}" class="ai-premium-banner-cta-{{ ai_gen_id }}">
             {{ block.settings.button_text }}
-            <svg class="ai-premium-banner-cta-icon-{{ ai_gen_id }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg
+              class="ai-premium-banner-cta-icon-{{ ai_gen_id }}"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <path d="M5 12h14"></path>
               <path d="M12 5l7 7-7 7"></path>
             </svg>
@@ -307,9 +313,7 @@
           {% else %}
             <div class="ai-premium-banner-image-placeholder-{{ ai_gen_id }}">
               {{ 'hero-apparel-1' | placeholder_svg_tag }}
-              <div class="ai-premium-banner-empty-state-{{ ai_gen_id }}">
-                Add your banner image
-              </div>
+              <div class="ai-premium-banner-empty-state-{{ ai_gen_id }}">Add your banner image</div>
             </div>
           {% endif %}
         </div>
@@ -378,26 +382,6 @@
       "type": "image_picker",
       "id": "image",
       "label": "Banner image"
-    },
-    {
-      "type": "range",
-      "id": "section_height",
-      "min": 400,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "label": "Section height",
-      "default": 600
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "min": 300,
-      "max": 600,
-      "step": 50,
-      "unit": "px",
-      "label": "Image height",
-      "default": 500
     },
     {
       "type": "range",
