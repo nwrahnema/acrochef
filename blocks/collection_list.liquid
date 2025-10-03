@@ -121,11 +121,12 @@
 
   @media screen and (max-width: 749px) {
     .collection-list-{{collection_list_id}} {
-      padding: {{ block.settings.section_padding_top | times: 0.2 }}px 1rem {{ block.settings.section_padding_bottom | times: 0.2 }}px 1rem;
+      padding: {{ block.settings.section_padding_top | times: 0.2 }}px;
     }
 
     .collection-title-{{ collection_list_id }} {
       font-size: {{ block.settings.collection_title_size | times: 0.8 }}px;
+      margin: 0;
     }
 
     .collection-card-{{ collection_list_id }} {
@@ -152,6 +153,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-auto-rows: auto;
+      gap: 0 20px;
     }
   }
 {% endstyle %}
