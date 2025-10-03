@@ -106,7 +106,7 @@
             "card_padding": 16,
             "title_size": 38,
             "description_size": 16,
-            "product_title_size": 15,
+            "product_title_size": 20,
             "price_size": 16,
             "background_color": "#ffffff",
             "text_color": "#171171",
