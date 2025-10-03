@@ -91,7 +91,7 @@
           "settings": {
             "title": "Featured Products",
             "description": "",
-            "collection": "casserole-pans-new",
+            "collection": "cookware-kitchenware-new",
             "products_limit": 12,
             "show_vendor": false,
             "show_add_to_cart": false,
