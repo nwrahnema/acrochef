@@ -13,7 +13,7 @@
       "type": "video-banner",
       "name": "t:sections.video-banner.presets.name",
       "settings": {
-        "video": "shopify://files/videos/acro.mp4"
+        "video": "shopify://files/videos/acro_lower_quality.mp4"
       }
     },
     "1754881105207597a6": {
