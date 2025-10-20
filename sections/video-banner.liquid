@@ -1,12 +1,10 @@
 {%- style -%}
   .video-banner-container {
+    z-index: 1;
     position: relative;
     height: min(85vh, 800px);
     margin-inline: auto;
     max-width: 1600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .video-banner-container-container {
@@ -23,8 +21,17 @@
     filter: brightness(0.6);
   }
 
-  .video-banner-text {
+  .video-banner-content {
     z-index: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-banner-text {
     color: white;
     display: flex;
     align-items: center;
@@ -56,10 +63,13 @@
     .video-banner-container {
       height: 320px;
       min-height: 220px;
-      align-items: flex-start;
+    }
+    .video-banner-content {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr [row-start]);
     }
     .video-banner-text {
-      margin-top: 4rem;
+      grid-row-start: row-start 1;
       padding: 1rem;
       font-size: 1rem;
     }
@@ -67,8 +77,10 @@
       font-size: clamp(1.5rem, 8vw, 2.5rem);
     }
     .video-banner-cta {
-      gap: 10px;
-      margin-top: 1rem;
+      grid-row-start: row-start 2;
+      align-self: flex-end;
+      padding-bottom: 3rem;
+      gap: 16px;
     }
     .shop-button {
       font-size: 1.2rem;
@@ -84,12 +96,14 @@
       section.settings.video
       | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
     }}
-    <div class="video-banner-text">
-      <div class="video-banner-hero">
-        <span>Bring your kitchen to</span>
-        <i>life</i>
+    <div class="video-banner-content">
+      <div class="video-banner-text">
+        <div class="video-banner-hero">
+          <span>Bring your kitchen to</span>
+          <i>life</i>
+        </div>
+        <div>Professional-grade cookware for every occasion</div>
       </div>
-      <div>Professional-grade cookware for every occasion</div>
       <div class="video-banner-cta">
         <a
           href="{{ routes.collections_url }}/cookware-kitchenware-new"
