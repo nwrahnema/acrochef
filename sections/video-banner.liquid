@@ -1,22 +1,124 @@
 {%- style -%}
+  .video-banner-container {
+    z-index: 1;
+    position: relative;
+    height: min(85vh, 800px);
+    margin-inline: auto;
+    max-width: 1600px;
+  }
+
+  .video-banner-container-container {
+    margin: 0 2rem;
+  }
+
   .video-banner {
     display: block;
     width: 100%;
-    height: 30vh;
+    height: 100%;
     object-fit: cover;
     object-position: center center;
+    position: absolute;
+    filter: brightness(0.6);
+  }
+
+  .video-banner-content {
+    z-index: 1;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .video-banner-text {
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .video-banner-hero {
+    font-size: clamp(2rem, 6vw, 6rem);
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .video-banner-cta {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+  }
+
+  @media (max-width: 749px) {
+    .video-banner-container-container {
+      margin: 0;
+    }
+    .video-banner-container {
+      height: 320px;
+      min-height: 220px;
+    }
+    .video-banner-content {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr [row-start]);
+    }
+    .video-banner-text {
+      grid-row-start: row-start 1;
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    .video-banner-hero {
+      font-size: clamp(1.5rem, 8vw, 2.5rem);
+    }
+    .video-banner-cta {
+      grid-row-start: row-start 2;
+      align-self: flex-end;
+      padding-bottom: 3rem;
+      gap: 16px;
+    }
+    .shop-button {
+      font-size: 1.2rem;
+      padding: 0.6rem 1.1rem;
+      min-width: 120px;
+    }
   }
 {%- endstyle -%}
 
-{{ 
-  section.settings.video 
-  | video_tag:
-    autoplay: true,
-    loop: true,
-    controls: false,
-    muted: true,
-    class: "video-banner"
-}}
+<div class="video-banner-container-container">
+  <div class="video-banner-container">
+    {{
+      section.settings.video
+      | video_tag: autoplay: true, loop: true, controls: false, muted: true, class: 'video-banner'
+    }}
+    <div class="video-banner-content">
+      <div class="video-banner-text">
+        <div class="video-banner-hero">
+          <span>Bring your kitchen to</span>
+          <i>life</i>
+        </div>
+        <div>Professional-grade cookware for every occasion</div>
+      </div>
+      <div class="video-banner-cta">
+        <a
+          href="{{ routes.collections_url }}/cookware-kitchenware-new"
+          class="shop-button"
+          >Shop Cookware</a
+        >
+        <a
+          href="{{ routes.collections_url }}/commercial-equipment-new"
+          class="shop-button"
+          >Shop Food Equipment</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
 
 {% schema %}
 {
@@ -35,7 +137,7 @@
       "type": "video",
       "id": "video",
       "label": "t:sections.video-banner.settings.video.label"
-    },
+    }
   ],
   "presets": [
     {

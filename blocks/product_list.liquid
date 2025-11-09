@@ -8,20 +8,26 @@
   }
 
   .product-list-scroll-container-{{ product_list_id }} {
+    display: flex;
+    align-items: center;
     max-width: {{ settings.page_width }}px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
   }
 
   .product-list-scroll-header-{{ product_list_id }} {
-    margin-bottom: {{ block.settings.header_spacing }}px;
+    margin: 0 24px 42px 24px;
     text-align: {{ block.settings.text_alignment }};
   }
 
   .product-list-scroll-title-{{ product_list_id }} {
     color: {{ block.settings.text_color }};
     font-size: {{ block.settings.title_size }}px;
-    margin: 0 0 8px;font-weight: 600;
+    line-height: 42px;
+    margin: 0 0 8px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    word-break: keep-all;
   }
 
   .product-list-scroll-description-{{ product_list_id }} {
@@ -183,6 +189,7 @@
     align-items: center;
     justify-content: center;
     transition: background-color 0.3s ease, opacity 0.3s ease;
+    margin-bottom: 8rem;
   }
 
   .product-list-scroll-button-{{ product_list_id }}:hover {
@@ -199,11 +206,28 @@
     }
 
     .product-list-scroll-container-{{ product_list_id }} {
-      padding: 0 16px;
+      flex-direction: column;
     }
 
     .product-list-scroll-title-{{ product_list_id }} {
       font-size: {{ block.settings.title_size | times: 0.9 }}px;
+      text-wrap: nowrap;
+    }
+
+    .product-list-scroll-header-{{ product_list_id }} {
+      margin: 0;
+    }
+
+    .product-list-scroll-header-{{ product_list_id }} .shop-button {
+      margin: 0;
+    }
+
+    .product-list-scroll-wrapper-{{ product_list_id }} {
+      width: 100%;
+    }
+
+    .product-list-scroll-track-{{ product_list_id }} {
+      margin-top: 12px;
     }
   }
 {% endstyle %}
@@ -221,66 +245,111 @@
         {% if block.settings.description != blank %}
           <div class="product-list-scroll-description-{{ product_list_id }}">{{ block.settings.description }}</div>
         {% endif %}
+        <a
+          href="{{ routes.collections_url }}/cookware-kitchenware-new"
+          class="shop-button"
+          >Shop All</a
+        >
       </div>
     {% endif %}
 
-    <div class="product-list-scroll-wrapper-{{ product_list_id }}">
-      <div class="product-list-scroll-track-{{ product_list_id }}" data-scroll-track>
+    <div class="product-list-scroll-wrapper-{{ product_list_id }}" style="display: flex; align-items: center; gap: 0;">
+      {% if block.settings.show_scroll_controls %}
+        <button
+          class="product-list-scroll-button-{{ product_list_id }}"
+          data-scroll-prev
+          aria-label="Previous products"
+          style="margin-right: 12px;"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15,18 9,12 15,6"></polyline>
+          </svg>
+        </button>
+      {% endif %}
+      <div class="product-list-scroll-track-{{ product_list_id }}" data-scroll-track style="flex:1; min-width:0;">
         {% if block.settings.collection != blank %}
           {% for product in block.settings.collection.products limit: block.settings.products_limit %}
-            <div class="product-list-card-{{ product_list_id }}">
-              <div class="product-list-image-wrapper-{{ product_list_id }}">
-                {% if product.featured_image %}
-                  <img
-                    src="{{ product.featured_image | image_url: width: 400 }}"
-                    alt="{{ product.featured_image.alt | escape }}"
-                    class="product-list-image-{{ product_list_id }}"
-                    loading="lazy"
-                    width="400"
-                    height="400"
-                  >
-                {% else %}
-                  <div class="product-list-image-placeholder-{{ product_list_id }}">
-                    {{ 'product-1' | placeholder_svg_tag }}
-                  </div>
-                {% endif %}
+            {% if product.available %}
+              <a
+                href="{{ product.url }}"
+                class="product-list-card-{{ product_list_id }}"
+                style="text-decoration: none; color: inherit; display: block;"
+              >
+                <div class="product-list-image-wrapper-{{ product_list_id }}">
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      class="product-list-image-{{ product_list_id }}"
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    >
+                  {% else %}
+                    <div class="product-list-image-placeholder-{{ product_list_id }}">
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
 
-                {% if product.compare_at_price > product.price %}
-                  <div class="product-list-badge-{{ product_list_id }}">Sale</div>
-                {% elsif product.available == false %}
-                  <div class="product-list-badge-{{ product_list_id }}">Sold out</div>
-                {% endif %}
-              </div>
-
-              <div class="product-list-info-{{ product_list_id }}">
-                {% if block.settings.show_vendor and product.vendor != blank %}
-                  <div class="product-list-vendor-{{ product_list_id }}">{{ product.vendor }}</div>
-                {% endif %}
-
-                <h3 class="product-list-title-{{ product_list_id }}">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-
-                <div class="product-list-price-{{ product_list_id }}">
-                  {{ product.price | money }}
                   {% if product.compare_at_price > product.price %}
-                    <span class="product-list-price-compare-{{ product_list_id }}">
-                      {{ product.compare_at_price | money }}
-                    </span>
+                    <div class="product-list-badge-{{ product_list_id }}">Sale</div>
                   {% endif %}
                 </div>
 
-                {% if block.settings.show_add_to_cart %}
-                  {% if product.available -%}
+                <div class="product-list-info-{{ product_list_id }}">
+                  {% if block.settings.show_vendor and product.vendor != blank %}
+                    <div class="product-list-vendor-{{ product_list_id }}">{{ product.vendor }}</div>
+                  {% endif %}
+
+                  <h3 class="product-list-title-{{ product_list_id }}">{{ product.title }}</h3>
+
+                  <div class="product-list-price-{{ product_list_id }}">
+                    {{ product.price | money }}
+                    {% if product.compare_at_price > product.price %}
+                      <span class="product-list-price-compare-{{ product_list_id }}">
+                        {{ product.compare_at_price | money }}
+                      </span>
+                    {% endif %}
+                  </div>
+
+                  {% if block.settings.show_add_to_cart %}
                     <a href="{{ product.url }}" class="product-list-button-{{ product_list_id }}">
                       {{ block.settings.button_text -}}
                     </a>
+                  {% endif %}
+                </div>
+              </a>
+            {% else %}
+              <div class="product-list-card-{{ product_list_id }}" style="opacity:0.6; pointer-events:none;">
+                <div class="product-list-image-wrapper-{{ product_list_id }}">
+                  {% if product.featured_image %}
+                    <img
+                      src="{{ product.featured_image | image_url: width: 400 }}"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      class="product-list-image-{{ product_list_id }}"
+                      loading="lazy"
+                      width="400"
+                      height="400"
+                    >
                   {% else %}
+                    <div class="product-list-image-placeholder-{{ product_list_id }}">
+                      {{ 'product-1' | placeholder_svg_tag }}
+                    </div>
+                  {% endif %}
+                  <div class="product-list-badge-{{ product_list_id }}">Sold out</div>
+                </div>
+                <div class="product-list-info-{{ product_list_id }}">
+                  {% if block.settings.show_vendor and product.vendor != blank %}
+                    <div class="product-list-vendor-{{ product_list_id }}">{{ product.vendor }}</div>
+                  {% endif %}
+                  <h3 class="product-list-title-{{ product_list_id }}">{{ product.title }}</h3>
+                  <div class="product-list-price-{{ product_list_id }}">{{ product.price | money }}</div>
+                  {% if block.settings.show_add_to_cart %}
                     <button class="product-list-button-{{ product_list_id }}" disabled>Sold out</button>
                   {% endif %}
-                {% endif %}
+                </div>
               </div>
-            </div>
+            {% endif %}
           {% endfor %}
         {% else %}
           {% for i in (1..8) %}
@@ -303,26 +372,19 @@
           {% endfor %}
         {% endif %}
       </div>
-    </div>
-
-    {% if block.settings.show_scroll_controls %}
-      <div class="product-list-scroll-controls-{{ product_list_id }}">
+      {% if block.settings.show_scroll_controls %}
         <button
           class="product-list-scroll-button-{{ product_list_id }}"
-          data-scroll-prev
-          aria-label="Previous products"
+          data-scroll-next
+          aria-label="Next products"
+          style="margin-left: 12px;"
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15,18 9,12 15,6"></polyline>
-          </svg>
-        </button>
-        <button class="product-list-scroll-button-{{ product_list_id }}" data-scroll-next aria-label="Next products">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="9,18 15,12 9,6"></polyline>
           </svg>
         </button>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </product-list-scroll-{{ product_list_id }}>
 
@@ -347,14 +409,14 @@
       setupScrollControls() {
         this.prevButton.addEventListener('click', () => {
           this.scrollTrack.scrollBy({
-            left: -{{ block.settings.card_width | plus: block.settings.product_spacing }},
+            left: -{{ block.settings.card_width | plus: block.settings.product_spacing | times : 2}},
             behavior: 'smooth'
           });
         });
 
         this.nextButton.addEventListener('click', () => {
           this.scrollTrack.scrollBy({
-            left: {{ block.settings.card_width | plus: block.settings.product_spacing }},
+            left: {{ block.settings.card_width | plus: block.settings.product_spacing | times : 2 }},
             behavior: 'smooth'
           });
         });

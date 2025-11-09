@@ -13,7 +13,7 @@
       "type": "video-banner",
       "name": "t:sections.video-banner.presets.name",
       "settings": {
-        "video": "shopify://files/videos/crep acrochef.mp4"
+        "video": "shopify://files/videos/acro_lower_quality.mp4"
       }
     },
     "1754881105207597a6": {
@@ -22,20 +22,17 @@
         "collection_list_KLE8PG": {
           "type": "collection_list",
           "settings": {
-            "heading": "Shop by category",
             "description": "",
             "selected_collections": [
-              "food-equipment-new",
-              "bakeware-new",
+              "pots-new",
               "pans",
-              "pots-new"
+              "bakeware-new",
+              "food-equipment-new"
             ],
-            "show_product_count": true,
             "text_alignment": "center",
             "collection_width": 280,
             "collection_spacing": 20,
-            "image_height": 200,
-            "show_navigation": true,
+            "image_height": 300,
             "background_color": "#ffffff",
             "text_color": "#171171",
             "card_background_color": "#ffffff",
@@ -47,7 +44,7 @@
             "button_hover_color": "#f5f5f5",
             "heading_size": 38,
             "description_size": 16,
-            "collection_title_size": 18,
+            "collection_title_size": 24,
             "collection_count_size": 14,
             "section_padding_top": 60,
             "section_padding_bottom": 60,
@@ -75,8 +72,8 @@
             "background_color": "#171171",
             "text_color": "#ffffff",
             "font_size": 16,
-            "font_weight": "400",
-            "padding": 4
+            "font_weight": "600",
+            "padding": 8
           },
           "blocks": {}
         }
@@ -92,9 +89,9 @@
         "product_list_RinR6F": {
           "type": "product_list",
           "settings": {
-            "title": "Featured products",
-            "description": "<p>Shop our best-sellers</p>",
-            "collection": "food-equipment-new",
+            "title": "Featured Products",
+            "description": "",
+            "collection": "cookware-kitchenware-new",
             "products_limit": 12,
             "show_vendor": false,
             "show_add_to_cart": false,
@@ -109,14 +106,14 @@
             "card_padding": 16,
             "title_size": 38,
             "description_size": 16,
-            "product_title_size": 15,
+            "product_title_size": 20,
             "price_size": 16,
             "background_color": "#ffffff",
             "text_color": "#171171",
             "price_color": "#171171",
             "card_background": "#ffffff",
             "card_border_color": "#e5e5e5",
-            "card_border_width": 1,
+            "card_border_width": 0,
             "card_border_radius": 8,
             "badge_color": "#ff4444",
             "badge_text_color": "#ffffff",
@@ -135,12 +132,88 @@
         "product_list_RinR6F"
       ],
       "settings": {}
+    },
+    "1758763279cc63d7d2": {
+      "type": "_blocks",
+      "blocks": {
+        "title_banner": {
+          "type": "title_banner",
+          "settings": {
+            "title": "Premium Cookware for the Everyday Chef",
+            "subtitle": "Our lineup of pots, pans, and other kitchen essentials made for the everyday cook ensures you get the best and most affordable premium cookware on the market.",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/cookware-kitchenware-new",
+            "layout": "image_left",
+            "image": "shopify://shop_images/Fry_Pans_1c0097be-c08d-4ac1-8442-52b12fb1bd3a.jpg",
+            "image_border_radius": 20,
+            "background_color": "#ffffff",
+            "text_background_color": "#171171",
+            "accent_color": "#72513c",
+            "title_color": "#ffffff",
+            "subtitle_color": "#ffffff",
+            "button_color": "#f17e60",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#f17e60",
+            "button_hover_text_color": "#ffffff",
+            "title_font": "libre_baskerville_n4",
+            "title_size": 36,
+            "subtitle_size": 18,
+            "border_radius": 0,
+            "text_border_radius": 20,
+            "button_border_radius": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title_banner"
+      ],
+      "settings": {}
+    },
+    "blocks_jwdHEX": {
+      "type": "_blocks",
+      "blocks": {
+        "title_banner_HNYMPq": {
+          "type": "title_banner",
+          "settings": {
+            "title": "Commercial Grade Equipment for Restaurants",
+            "subtitle": "Outdated gear slows down good kitchens. Our commercial-grade equipment is designed to keep up with daily usage. We sell reliable tools that help your team cook faster and better.",
+            "button_text": "Shop Food Equipment",
+            "button_link": "shopify://collections/food-equipment-new",
+            "layout": "image_right",
+            "image": "shopify://shop_images/meat-grinder.jpg",
+            "image_border_radius": 20,
+            "background_color": "#ffffff",
+            "text_background_color": "#171171",
+            "accent_color": "#72513c",
+            "title_color": "#ffffff",
+            "subtitle_color": "#ffffff",
+            "button_color": "#f17e60",
+            "button_text_color": "#ffffff",
+            "button_hover_color": "#f17e60",
+            "button_hover_text_color": "#ffffff",
+            "title_font": "libre_baskerville_n4",
+            "title_size": 36,
+            "subtitle_size": 18,
+            "border_radius": 0,
+            "text_border_radius": 20,
+            "button_border_radius": 40
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title_banner_HNYMPq"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "video_banner_cRhGBL",
     "1754881105207597a6",
     "1754619754012c3614",
-    "17548804239d0657b2"
+    "17548804239d0657b2",
+    "1758763279cc63d7d2",
+    "blocks_jwdHEX"
   ]
 }

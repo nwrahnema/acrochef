@@ -1,0 +1,494 @@
+{% assign title_banner_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .title-banner-{{ title_banner_id }} {
+    position: relative;
+    overflow: hidden;
+    background: {{ block.settings.background_color }};
+    min-height: {{ block.settings.section_height }}px;
+    display: flex;
+    align-items: center;
+    border-radius: {{ block.settings.border_radius }}px;
+    margin: 40px 0;
+  }
+
+  .title-banner-container-{{ title_banner_id }} {
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    z-index: 2;
+  }
+
+  .title-banner-content-{{ title_banner_id }} {
+    display: grid;
+    {% if block.settings.layout == 'image_left' %}
+      grid-template: 'image text' / 2fr 1fr;
+    {% else %}
+      grid-template: 'text image' / 1fr 2fr;
+    {% endif %}
+    gap: 60px;
+  }
+
+  .title-banner-text-{{ title_banner_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: {{ block.settings.text_background_color }};
+    padding: 40px;
+    border-radius: {{ block.settings.text_border_radius }}px;
+    grid-area: text;
+  }
+
+  .title-banner-image-{{ title_banner_id }} {
+    position: relative;
+    grid-area: image;
+  }
+
+  .title-banner-image-wrapper-{{ title_banner_id }} {
+    background-image: url({{ block.settings.image | image_url: width: 800 }});
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .title-banner-image-placeholder-{{ title_banner_id }} {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .title-banner-image-placeholder-{{ title_banner_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .title-banner-empty-state-{{ title_banner_id }} {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .title-banner-title-{{ title_banner_id }} {
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 700;
+    color: {{ block.settings.title_color }};
+    line-height: 1.2;
+    margin: 0;
+    font-family: {{ block.settings.title_font.family }}, {{ block.settings.title_font.fallback_families }};
+    font-weight: {{ block.settings.title_font.weight }};
+    font-style: {{ block.settings.title_font.style }};
+  }
+
+  .title-banner-subtitle-{{ title_banner_id }} {
+    font-size: {{ block.settings.subtitle_size }}px;
+    color: {{ block.settings.subtitle_color }};
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .title-banner-cta-{{ title_banner_id }} {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: {{ block.settings.button_color }};
+    color: {{ block.settings.button_text_color }};
+    padding: 12px 20px;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    width: fit-content;
+  }
+
+  .title-banner-cta-{{ title_banner_id }}:hover {
+    background: {{ block.settings.button_hover_color }};
+    color: {{ block.settings.button_hover_text_color }};
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .title-banner-cta-{{ title_banner_id }}::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .title-banner-cta-{{ title_banner_id }}:hover::before {
+    left: 100%;
+  }
+
+  .title-banner-cta-icon-{{ title_banner_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .title-banner-cta-{{ title_banner_id }}:hover .title-banner-cta-icon-{{ title_banner_id }} {
+    transform: translateX(4px);
+  }
+
+  .title-banner-decorative-{{ title_banner_id }} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .title-banner-circle-{{ title_banner_id }} {
+    position: absolute;
+    border-radius: 50%;
+    background: {{ block.settings.accent_color }};
+    opacity: 0.1;
+  }
+
+  .title-banner-circle-1-{{ title_banner_id }} {
+    width: 200px;
+    height: 200px;
+    top: -100px;
+    right: -100px;
+  }
+
+  .title-banner-circle-2-{{ title_banner_id }} {
+    width: 150px;
+    height: 150px;
+    bottom: -75px;
+    left: -75px;
+  }
+
+  .title-banner-circle-3-{{ title_banner_id }} {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+  }
+
+  @media screen and (max-width: 990px) {
+    .title-banner-content-{{ title_banner_id }} {
+      grid-template:
+        'image' auto
+        'text' auto;
+      gap: 40px;
+      text-align: center;
+    }
+
+    .title-banner-text-{{ title_banner_id }} {
+      align-items: center;
+    }
+
+    .title-banner-title-{{ title_banner_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .title-banner-image-wrapper-{{ title_banner_id }} {
+      height: 200px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .title-banner-container-{{ title_banner_id }} {
+      padding: 0 16px;
+    }
+
+    .title-banner-content-{{ title_banner_id }} {
+      gap: 30px;
+    }
+
+    .title-banner-text-{{ title_banner_id }} {
+      padding: 30px 20px;
+    }
+
+    .title-banner-title-{{ title_banner_id }} {
+      font-size: {{ block.settings.title_size | times: 0.7 }}px;
+    }
+
+    .title-banner-subtitle-{{ title_banner_id }} {
+      font-size: {{ block.settings.subtitle_size | times: 0.9 }}px;
+    }
+
+    .title-banner-cta-{{ title_banner_id }} {
+      padding: 10px 16px;
+      font-size: 16px;
+    }
+  }
+{% endstyle %}
+
+<div class="title-banner-{{ title_banner_id }}" {{ block.shopify_attributes }}>
+  <div class="title-banner-decorative-{{ title_banner_id }}">
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-1-{{ title_banner_id }}"></div>
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-2-{{ title_banner_id }}"></div>
+    <div class="title-banner-circle-{{ title_banner_id }} title-banner-circle-3-{{ title_banner_id }}"></div>
+  </div>
+
+  <div class="title-banner-container-{{ title_banner_id }}">
+    <div class="title-banner-content-{{ title_banner_id }}">
+      <div class="title-banner-text-{{ title_banner_id }}">
+        {% if block.settings.title != blank %}
+          <h2 class="title-banner-title-{{ title_banner_id }}">{{ block.settings.title }}</h2>
+        {% endif %}
+
+        {% if block.settings.subtitle != blank %}
+          <p class="title-banner-subtitle-{{ title_banner_id }}">{{ block.settings.subtitle }}</p>
+        {% endif %}
+
+        {% if block.settings.button_text != blank %}
+          <a href="{{ block.settings.button_link }}" class="title-banner-cta-{{ title_banner_id }}">
+            {{ block.settings.button_text }}
+            <svg
+              class="title-banner-cta-icon-{{ title_banner_id }}"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="title-banner-image-{{ title_banner_id }}">
+        <div class="title-banner-image-wrapper-{{ title_banner_id }}">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Premium cookware banner",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Premium cookware for the everyday chef"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Discover our collection of professional-grade cookware designed to elevate your culinary experience. From non-stick pans to durable cast iron, we have everything you need."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "image_right",
+          "label": "Text left, image right"
+        },
+        {
+          "value": "image_left",
+          "label": "Text right, image left"
+        }
+      ],
+      "default": "image_right"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Banner image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Section background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_background_color",
+      "label": "Text background color",
+      "default": "#171171"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#72513c"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#171171"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_color",
+      "label": "Button hover background color",
+      "default": "#72513c"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Button hover text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "title_font",
+      "label": "Title font",
+      "default": "libre_baskerville_n4"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 24,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Title size",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Subtitle size",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Section border radius",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "text_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Text background border radius",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Button border radius",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Premium cookware banner"
+    }
+  ]
+}
+{% endschema %}

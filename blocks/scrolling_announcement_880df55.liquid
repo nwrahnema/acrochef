@@ -3,6 +3,11 @@
 {% endunless %}
 
 {% style %}
+  .marquee-container {
+    margin-inline: auto;
+    overflow: hidden;
+  }
+
   .marquee {
       width: 100%;
       display: inline-block;
@@ -21,6 +26,7 @@
       animation: marquee {{ block.settings.scroll_speed }}s linear infinite;
       animation-play-state: running;
       font-size: {{ block.settings.font_size }}px;
+      font-weight: {{ block.settings.font_weight }};
   }
 
   .marquee:hover .marquee__inner {
@@ -39,9 +45,11 @@
   }
 {% endstyle %}
 
-<div class="marquee" {{ block.shopify_attributes }}>
-  <div class="marquee__inner">
-    {{ block.settings.announcement_text }}
+<div class="marquee-container">
+  <div class="marquee" {{ block.shopify_attributes }}>
+    <div class="marquee__inner">
+      {{ block.settings.announcement_text }}
+    </div>
   </div>
 </div>
 

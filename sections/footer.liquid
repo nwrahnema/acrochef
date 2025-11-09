@@ -25,6 +25,18 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .footer__logo {
+    filter: invert();
+    transform: translateX(-3%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer__logo-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+  }
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
@@ -168,7 +180,7 @@
           {%- if section.settings.newsletter_enable -%}
             <div class="footer-block__newsletter">
               {%- if section.settings.newsletter_heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+                <h2 class="inline-richtext">{{ section.settings.newsletter_heading }}</h2>
               {%- endif -%}
               {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                 <input type="hidden" name="contact[tags]" value="newsletter">
@@ -296,6 +308,16 @@
           </div>
         {%- endif -%}
       </div>
+    </div>
+    <div class="footer__logo-wrapper page-width">
+      <img
+        class="footer__logo"
+        src="{{ section.settings.logo | image_url: width: 300 }}"
+        alt="{{ shop.name | escape }}"
+        width="300px"
+        height="100%"
+        loading="lazy"
+      >
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
@@ -529,6 +551,15 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 36
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
     }
   ],
   "default": {
