@@ -27,7 +27,7 @@
               "pots-new",
               "pans",
               "bakeware-new",
-              "food-equipment-new"
+              "food-equipment"
             ],
             "text_alignment": "center",
             "collection_width": 280,
@@ -179,7 +179,7 @@
             "title": "Commercial Grade Equipment for Restaurants",
             "subtitle": "Outdated gear slows down good kitchens. Our commercial-grade equipment is designed to keep up with daily usage. We sell reliable tools that help your team cook faster and better.",
             "button_text": "Shop Food Equipment",
-            "button_link": "shopify://collections/food-equipment-new",
+            "button_link": "shopify://collections/food-equipment",
             "layout": "image_right",
             "image": "shopify://shop_images/meat-grinder.jpg",
             "image_border_radius": 20,
