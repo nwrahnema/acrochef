@@ -1,5 +1,5 @@
 {% unless block.settings.pause_on_hover %}
-  {% assign block.settings.pause_on_hover = true %}
+  {% assign renamed_variable_block_2e_settings_2e_pause_on_hover = true %}
 {% endunless %}
 
 {% style %}
@@ -156,3 +156,13 @@
   "tag": null
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% assign block.settings.pause_on_hover = true %}"
+  to: "{% assign renamed_variable_block_2e_settings_2e_pause_on_hover = true %}"
+  position: 45..117
+{% endcomment %}
